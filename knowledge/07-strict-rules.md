@@ -32,7 +32,7 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 ## Select From List
 
 - `correctAnswer` = letters from the shared options pool.
-- `answerType` = `text` (not `single_choice`).
+- `answerType` = `multiple_choice` (assigned by the editor's select-from-list builder; matches production exports).
 
 ## Statement Types (true_false_not_given, yes_no_not_given)
 
@@ -94,4 +94,4 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 - Wrapping part artifacts in `{ part, progress, nextAction }` envelopes.
 - Claiming a file was generated without evidence in the conversation.
 - Including roman numeral prefixes in matching_heading wordBank words.
-- Using `single_choice` answerType for `select_from_list` questions.
+- Using `single_choice` or `text` answerType for `select_from_list` questions (must be `multiple_choice`).

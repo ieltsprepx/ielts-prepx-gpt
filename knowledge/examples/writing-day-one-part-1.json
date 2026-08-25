@@ -1,0 +1,39 @@
+{
+  "passages": [
+    {
+      "order": 1,
+      "title": "The two pie charts below show the online shopping sales for retail sectors in Canada in 2005 and 2010.",
+      "content": "<p>Summarise the information by selecting and reporting the main features, and make<br>comparisons where relevant.<br>Write at least 150 words.</p><img src=\"https://assets.ieltsprepx.app/platform/private/questions/5931b89e-ac87-482c-bc48-f66e2cd8a24a\"><p></p>",
+      "references": []
+    }
+  ],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Written Response",
+      "description": null,
+      "presentationConfig": {
+        "type": "large_answers",
+        "items": [
+          {
+            "questionId": "1263ae39-e52e-418e-8ddc-a578a84c25dc",
+            "questionText": "Write your response below."
+          }
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "1263ae39-e52e-418e-8ddc-a578a84c25dc",
+      "answerType": "text",
+      "correctAnswer": [
+        "Sample response placeholder"
+      ],
+      "validation": {
+        "minWords": 150,
+        "caseSensitive": false
+      }
+    }
+  ]
+}

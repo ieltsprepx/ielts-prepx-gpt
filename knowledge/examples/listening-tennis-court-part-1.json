@@ -1,0 +1,411 @@
+{
+  "passages": [],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Complete the notes below",
+      "description": "<p>Write ONE WORD AND/OR A NUMBER for each answer.</p>",
+      "presentationConfig": {
+        "type": "note_completion",
+        "items": [
+          {
+            "questionId": "492a0fd6-026c-4acc-9a1d-74fb9b37632d"
+          },
+          {
+            "questionId": "c3aee6ee-bf53-41ca-a572-7d940daa26a4"
+          },
+          {
+            "questionId": "0edc8286-d6db-4e7b-8666-8d4e9b695700"
+          },
+          {
+            "questionId": "63ce8d68-933c-420e-bb6f-e066c93b0000"
+          },
+          {
+            "questionId": "f28fd28f-e722-40d5-8a71-7fe9e8f5b361"
+          },
+          {
+            "questionId": "c004377d-4ced-41d5-ad6f-6af146ff100d"
+          },
+          {
+            "questionId": "0ad66f31-4b32-41db-a995-a28aecc24db0"
+          },
+          {
+            "questionId": "1a0d0eb3-9594-4c71-acd2-c9fba314a2db"
+          },
+          {
+            "questionId": "20c895fb-3a4e-4c4a-9585-6b53b448f548"
+          },
+          {
+            "questionId": "dd5b252e-4986-4a83-8cf2-e5909c8b2593"
+          }
+        ],
+        "content": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Tennis Court Enquiry",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "Facilities",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Has ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "492a0fd6-026c-4acc-9a1d-74fb9b37632d"
+                  }
+                },
+                {
+                  "text": " Indoor courts for tennis",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Pro shop sells rackets and ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "c3aee6ee-bf53-41ca-a572-7d940daa26a4"
+                  }
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "Class Details",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Complete beginner lessons are ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "0edc8286-d6db-4e7b-8666-8d4e9b695700"
+                  }
+                },
+                {
+                  "text": " a week",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Beginner Class 2 is once weekly",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Intermediate learners participate in a competition for ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "63ce8d68-933c-420e-bb6f-e066c93b0000"
+                  }
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Can play a game with the instructor to check their ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "f28fd28f-e722-40d5-8a71-7fe9e8f5b361"
+                  }
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "Comprehensive Package",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Includes ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "c004377d-4ced-41d5-ad6f-6af146ff100d"
+                  }
+                },
+                {
+                  "text": " booking of courts",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Member discounts at pro-shop and on lessons offered",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Cost £",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "0ad66f31-4b32-41db-a995-a28aecc24db0"
+                  }
+                },
+                {
+                  "text": " for first-time members",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "Learner Package",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Includes access to all tennis courts",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Members can use the ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "1a0d0eb3-9594-4c71-acd2-c9fba314a2db"
+                  }
+                },
+                {
+                  "text": " for an additional fee",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Get ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "20c895fb-3a4e-4c4a-9585-6b53b448f548"
+                  }
+                },
+                {
+                  "text": " off of classes",
+                  "type": "text"
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "Signing up",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "text": "• Must ",
+                  "type": "text"
+                },
+                {
+                  "type": "blank",
+                  "attrs": {
+                    "questionId": "dd5b252e-4986-4a83-8cf2-e5909c8b2593"
+                  }
+                },
+                {
+                  "text": " Daniel back to confirm the trial",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "492a0fd6-026c-4acc-9a1d-74fb9b37632d",
+      "answerType": "text",
+      "correctAnswer": [
+        "2"
+      ],
+      "validation": {
+        "caseSensitive": false,
+        "acceptedAnswers": [
+          "two"
+        ]
+      }
+    },
+    {
+      "id": "c3aee6ee-bf53-41ca-a572-7d940daa26a4",
+      "answerType": "text",
+      "correctAnswer": [
+        "balls"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "0edc8286-d6db-4e7b-8666-8d4e9b695700",
+      "answerType": "text",
+      "correctAnswer": [
+        "twice"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "63ce8d68-933c-420e-bb6f-e066c93b0000",
+      "answerType": "text",
+      "correctAnswer": [
+        "charity"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "f28fd28f-e722-40d5-8a71-7fe9e8f5b361",
+      "answerType": "text",
+      "correctAnswer": [
+        "level"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "c004377d-4ced-41d5-ad6f-6af146ff100d",
+      "answerType": "text",
+      "correctAnswer": [
+        "priority"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "0ad66f31-4b32-41db-a995-a28aecc24db0",
+      "answerType": "text",
+      "correctAnswer": [
+        "120"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "1a0d0eb3-9594-4c71-acd2-c9fba314a2db",
+      "answerType": "text",
+      "correctAnswer": [
+        "machines"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "20c895fb-3a4e-4c4a-9585-6b53b448f548",
+      "answerType": "text",
+      "correctAnswer": [
+        "10%"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "dd5b252e-4986-4a83-8cf2-e5909c8b2593",
+      "answerType": "text",
+      "correctAnswer": [
+        "call"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    }
+  ]
+}

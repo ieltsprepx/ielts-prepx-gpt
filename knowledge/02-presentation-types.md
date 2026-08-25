@@ -68,7 +68,7 @@ Shared option pool; each item is just an answer slot:
 - `options`: min 2 non-empty strings.
 - `items`: min 1. Each has only `questionId`.
 - `correctAnswer`: **letter(s)** derived from `options` array. E.g. `["C"]`.
-- `answerType`: **`text`** (not `single_choice`).
+- `answerType`: **`multiple_choice`** (assigned by the editor's select-from-list builder; each slot picks a letter from the pool).
 
 ---
 
@@ -356,6 +356,7 @@ To verify blank↔items match:
 |---|---|
 | `single_choice` | `single_choice` |
 | `multiple_choice` | `multiple_choice` |
+| `select_from_list` | `multiple_choice` |
 | `true_false_not_given` | `true_false_ng` |
 | `yes_no_not_given` | `yes_no_ng` |
 | Everything else | `text` |

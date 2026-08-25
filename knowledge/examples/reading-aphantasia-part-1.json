@@ -1,0 +1,358 @@
+{
+  "passages": [
+    {
+      "order": 1,
+      "title": "READING PASSAGE 1",
+      "content": "<p>You should spend about 20 minutes on Questions 1–13, which are based on Reading Passage 1 below.</p><p><br>Aphantasia: A life without mental images<br>Close your eyes and imagine walking along a sandy beach and then gazing over the horizon as the Sun rises. How<br>clear is the image that springs to mind?<br>Most people can readily conjure images inside their head - known as their mind's eye. But this year scientists have<br>described a condition, aphantasia, in which some people are unable to visualise mental images.<br>Niel Kenmuir, from Lancaster, has always had a blind mind's eye. He knew he was different even in childhood. \"My<br>stepfather, when I couldn't sleep, told me to count sheep, and he explained what he meant, I tried to do it and I<br>couldn't,\" he says. \"I couldn't see any sheep jumping over fences, there was nothing to count.\"<br>Our memories are often tied up in images, think back to a wedding or first day at school. As a result, Niel admits,<br>some aspects of his memory are \"terrible\", but he is very good at remembering facts. And, like others with<br>aphantasia, he struggles to recognise faces. Yet he does not see aphantasia as a disability, but simply a different way<br>of experiencing life.<br>Mind's eye blind<br>Ironically, Niel now works in a bookshop, although he largely sticks to the non-fiction aisles. His condition begs the<br>question what is going on inside his picture-less mind. I asked him what happens when he tries to picture his fiancee.<br>\"This is the hardest thing to describe, what happens in my head when I think about things,\" he says. \"When I think<br>about my fiancee there is no image, but I am definitely thinking about her, I know today she has her hair up at the<br>back, she's brunette. But I'm not describing an image I am looking at, I'm remembering features about her, that's the<br>strangest thing and maybe that is a source of some regret.\"<br>The response from his mates is a very sympathetic: \"You're weird.\" But while Niel is very relaxed about his inability<br>to picture things, it is often a cause of distress for others. One person who took part in a study into aphantasia said<br>he had started to feel \"isolated\" and \"alone\" after discovering that other people could see images in their heads.<br>Being unable to reminisce about his mother years after her death led to him being \"extremely distraught\".<br>The super-visualiser<br>At the other end of the spectrum is children's book illustrator, Lauren Beard, whose work on the Fairytale<br>Hairdresser series will be familiar to many six-year-olds. Her career relies on the vivid images that leap into her<br>mind's eye when she reads text from her author. When I met her in her box-room studio in Manchester, she was<br>working on a dramatic scene in the next book. The text describes a baby perilously climbing onto a chandelier.<br>\"Straightaway I can visualise this grand glass chandelier in some sort of French kind of ballroom, and the little baby<br>just swinging off it and really heavy thick curtains,\" she says. \"I think I have a strong imagination, so I can create the<br>world and then keep adding to it so it gets sort of bigger and bigger in my mind and the characters too they sort of<br>evolve. I couldn't really imagine what it's like to not imagine, I think it must be a bit of a shame really.\"<br>Not many people have mental imagery as vibrant as Lauren or as blank as Niel. They are the two extremes of<br>visualisation. Adam Zeman, a professor of cognitive and behavioural neurology, wants to compare the lives and<br>experiences of people with aphantasia and its polar-opposite hyperphantasia. His team, based at the University of<br>Exeter, coined the term aphantasia this year in a study in the journal Cortex.<br>Prof Zeman tells the BBC: \"People who have contacted us say they are really delighted that this has been recognised<br>and has been given a name, because they have been trying to explain to people for years that there is this oddity<br>that they find hard to convey to others.\" How we imagine is clearly very subjective - one person's vivid scene could<br>be another's grainy picture. But Prof Zeman is certain that aphantasia is real. People often report being able to<br>dream in pictures, and there have been reported cases of people losing the ability to think in images after a brain<br>injury.<br>He is adamant that aphantasia is \"not a disorder\" and says it may affect up to one in 50 people. But he adds: \"I think<br>it makes quite an important difference to their experience of life because many of us spend our lives with imagery<br>hovering somewhere in the mind's eye which we inspect from time to time, it's a variability of human experience.\"</p>",
+      "references": []
+    }
+  ],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Questions 1–8",
+      "description": "<p>TRUE/FAlLSE/NOT GIVEN</p>",
+      "presentationConfig": {
+        "type": "true_false_not_given",
+        "items": [
+          {
+            "questionId": "a1e01cd1-3015-4513-94ef-7c4faa721890",
+            "questionText": "<p>Aphantasia is a condition, which describes people, for whom it is hard to visualise mental images.</p>"
+          },
+          {
+            "questionId": "dff1556a-3860-4119-8e44-832c737ba2c0",
+            "questionText": "<p>Niel Kenmuir was unable to count sheep in his head.</p>"
+          },
+          {
+            "questionId": "262508ca-ea6a-471d-ae22-49632e344c6c",
+            "questionText": "<p>People with aphantasia struggle to remember personal traits and clothes of different people.</p>"
+          },
+          {
+            "questionId": "626347d0-e14e-4f0e-9777-20f3b48724e8",
+            "questionText": "<p>Niel regrets that he cannot portray an image of his fiancee in his mind.</p>"
+          },
+          {
+            "questionId": "839c5fe5-141a-4698-8c0b-67b6fd67507e",
+            "questionText": "<p>Inability to picture things in someone's head is often a cause of distress for a person.</p>"
+          },
+          {
+            "questionId": "1665b713-b3e6-4bb8-9b5c-a9b1919c1c21",
+            "questionText": "<p>All people with aphantasia start to feel 'isolated' or 'alone' at some point of their lives</p>"
+          },
+          {
+            "questionId": "1523a745-5e5a-42b5-896c-d6f4bb36aa2a",
+            "questionText": "<p>Lauren Beard's career depends on her imagination.</p>"
+          },
+          {
+            "questionId": "b5915413-9db3-4034-aecc-ebbb2d5777ca",
+            "questionText": "<p>The author met Lauren Beard when she was working on a comedy scene in her next book</p>"
+          }
+        ]
+      }
+    },
+    {
+      "order": 2,
+      "title": "Questions 9–13",
+      "description": "<p>Write NO MORE THAN TWO WORDS from the passage for each answer.</p>",
+      "presentationConfig": {
+        "type": "sentence_completion",
+        "items": [
+          {
+            "questionId": "a9090dfc-ad53-4634-8141-7bd0597e4e69"
+          },
+          {
+            "questionId": "ff905221-8554-4998-8edb-94a4fab3c51b"
+          },
+          {
+            "questionId": "26643f9e-939c-47a7-9603-970d99bb7889"
+          },
+          {
+            "questionId": "27467183-ede4-48cb-8056-ec63490729cf"
+          },
+          {
+            "questionId": "721ff7e3-a661-4fea-8279-d006b5b09d07"
+          }
+        ],
+        "content": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "orderedList",
+              "attrs": {
+                "type": null,
+                "start": 9
+              },
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Only a small fraction of people have imagination as ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "a9090dfc-ad53-4634-8141-7bd0597e4e69"
+                          }
+                        },
+                        {
+                          "text": " as Lauren does",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Hyperphantasia is ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "ff905221-8554-4998-8edb-94a4fab3c51b"
+                          }
+                        },
+                        {
+                          "text": " to aphantasia",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "There are a lot of subjectivity in comparing people's imagination - somebody's vivid scene could be another",
+                          "type": "text"
+                        },
+                        {
+                          "type": "hardBreak"
+                        },
+                        {
+                          "text": "person's ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "26643f9e-939c-47a7-9603-970d99bb7889"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Prof Zeman is ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "27467183-ede4-48cb-8056-ec63490729cf"
+                          }
+                        },
+                        {
+                          "text": " that aphantasia is not an illness.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Many people spend their lives with ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "721ff7e3-a661-4fea-8279-d006b5b09d07"
+                          }
+                        },
+                        {
+                          "text": " somewhere in the mind's eye.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "a1e01cd1-3015-4513-94ef-7c4faa721890",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "FALSE"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "dff1556a-3860-4119-8e44-832c737ba2c0",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "TRUE"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "262508ca-ea6a-471d-ae22-49632e344c6c",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "NOT GIVEN"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "626347d0-e14e-4f0e-9777-20f3b48724e8",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "TRUE"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "839c5fe5-141a-4698-8c0b-67b6fd67507e",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "TRUE"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "1665b713-b3e6-4bb8-9b5c-a9b1919c1c21",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "NOT GIVEN"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "1523a745-5e5a-42b5-896c-d6f4bb36aa2a",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "TRUE"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "b5915413-9db3-4034-aecc-ebbb2d5777ca",
+      "answerType": "true_false_ng",
+      "correctAnswer": [
+        "FALSE"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "a9090dfc-ad53-4634-8141-7bd0597e4e69",
+      "answerType": "text",
+      "correctAnswer": [
+        "Vibrant"
+      ],
+      "validation": {
+        "maxWords": 2,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "ff905221-8554-4998-8edb-94a4fab3c51b",
+      "answerType": "text",
+      "correctAnswer": [
+        "Polar-opposite"
+      ],
+      "validation": {
+        "maxWords": 2,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "26643f9e-939c-47a7-9603-970d99bb7889",
+      "answerType": "text",
+      "correctAnswer": [
+        "Grainy Picture"
+      ],
+      "validation": {
+        "maxWords": 2,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "27467183-ede4-48cb-8056-ec63490729cf",
+      "answerType": "text",
+      "correctAnswer": [
+        "Adamant"
+      ],
+      "validation": {
+        "maxWords": 2,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "721ff7e3-a661-4fea-8279-d006b5b09d07",
+      "answerType": "text",
+      "correctAnswer": [
+        "Imagery hovering"
+      ],
+      "validation": {
+        "maxWords": 2,
+        "caseSensitive": false
+      }
+    }
+  ]
+}

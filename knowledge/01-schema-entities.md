@@ -130,6 +130,7 @@ Each reference links a passage snippet to a specific question:
 |---|---|
 | `single_choice` | `single_choice` |
 | `multiple_choice` | `multiple_choice` |
+| `select_from_list` | `multiple_choice` |
 | `true_false_not_given` | `true_false_ng` |
 | `yes_no_not_given` | `yes_no_ng` |
 | Everything else | `text` |

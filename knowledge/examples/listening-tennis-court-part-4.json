@@ -1,0 +1,622 @@
+{
+  "passages": [],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Questions 31-40.",
+      "description": "<p>Complete the notes below.<br>Write ONE WORD ONLY for each answer.</p>",
+      "presentationConfig": {
+        "type": "note_completion",
+        "items": [
+          {
+            "questionId": "f7a6d0e7-1246-476e-b530-f72a66addf1b"
+          },
+          {
+            "questionId": "b0da988c-b623-48c2-b2cd-bbe7987b881c"
+          },
+          {
+            "questionId": "bae58f38-82a1-424d-a151-d07499c2d827"
+          },
+          {
+            "questionId": "c7bda36d-5c06-475d-85f8-ced12c5bf974"
+          },
+          {
+            "questionId": "6d376092-7bae-4bff-86ba-c1497686ddd0"
+          },
+          {
+            "questionId": "22204634-8cb0-46ec-9ddc-390e11b8b327"
+          },
+          {
+            "questionId": "4ded3ca4-e66a-4b88-a08d-01f2c0bab3b5"
+          },
+          {
+            "questionId": "4f4ce1e1-6ba4-4742-842f-e3431c1f75d2"
+          },
+          {
+            "questionId": "5f5ebdbb-93e5-4170-b9c3-045af2d22d3d"
+          },
+          {
+            "questionId": "0a326b9d-9e86-4d31-8a45-05fa95a42684"
+          }
+        ],
+        "content": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Railway development in Great Britain",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "The first locomotive invented by Richard Trevithick was not a ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "f7a6d0e7-1246-476e-b530-f72a66addf1b"
+                          }
+                        },
+                        {
+                          "text": " success.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Large-scale rail construction began in the UK in the 1830s due to industrialisation.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Industrial areas needed ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "b0da988c-b623-48c2-b2cd-bbe7987b881c"
+                          }
+                        },
+                        {
+                          "text": " to port cities, which trains provided cheaply and quickly.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Global expansion of railway systems",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Global railway construction allowed ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "bae58f38-82a1-424d-a151-d07499c2d827"
+                          }
+                        },
+                        {
+                          "text": " trade to grow rapidly.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Rapid railway development occurred in North America in the 19th century.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "c7bda36d-5c06-475d-85f8-ced12c5bf974"
+                          }
+                        },
+                        {
+                          "text": " discovered in the West provided further motivation for building railroads across the",
+                          "type": "text"
+                        },
+                        {
+                          "type": "hardBreak"
+                        },
+                        {
+                          "text": "continent.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Historic occasions affecting railways",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Introduced in 1912, diesel fuel allowed locomotives to transport larger weights much faster.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Extremely long journeys could now be made in a few ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "6d376092-7bae-4bff-86ba-c1497686ddd0"
+                          }
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Railways were military ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "22204634-8cb0-46ec-9ddc-390e11b8b327"
+                          }
+                        },
+                        {
+                          "text": " during the two world wars and were rebuilt afterward.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Reasons for growth in train transport",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "4ded3ca4-e66a-4b88-a08d-01f2c0bab3b5"
+                          }
+                        },
+                        {
+                          "text": " needed a more efficient way of moving their goods during periods of industrialisation.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Railways also allowed some Europeans to manage their ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "4f4ce1e1-6ba4-4742-842f-e3431c1f75d2"
+                          }
+                        },
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Current trains and railway systems",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "The fuels used for trains are now ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "5f5ebdbb-93e5-4170-b9c3-045af2d22d3d"
+                          }
+                        },
+                        {
+                          "text": " and better for the environment.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "The rapid improvement of ",
+                          "type": "text"
+                        },
+                        {
+                          "type": "blank",
+                          "attrs": {
+                            "questionId": "0a326b9d-9e86-4d31-8a45-05fa95a42684"
+                          }
+                        },
+                        {
+                          "text": " railway networks in several continents made rail highly",
+                          "type": "text"
+                        },
+                        {
+                          "type": "hardBreak"
+                        },
+                        {
+                          "text": "popular.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null
+                      },
+                      "content": [
+                        {
+                          "text": "Trains may become more popular because they are fast, efficient, and affordable.",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "f7a6d0e7-1246-476e-b530-f72a66addf1b",
+      "answerType": "text",
+      "correctAnswer": [
+        "financial"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "b0da988c-b623-48c2-b2cd-bbe7987b881c",
+      "answerType": "text",
+      "correctAnswer": [
+        "connections"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "bae58f38-82a1-424d-a151-d07499c2d827",
+      "answerType": "text",
+      "correctAnswer": [
+        "international"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "c7bda36d-5c06-475d-85f8-ced12c5bf974",
+      "answerType": "text",
+      "correctAnswer": [
+        "Gold"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "6d376092-7bae-4bff-86ba-c1497686ddd0",
+      "answerType": "text",
+      "correctAnswer": [
+        "days"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "22204634-8cb0-46ec-9ddc-390e11b8b327",
+      "answerType": "text",
+      "correctAnswer": [
+        "targets"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "4ded3ca4-e66a-4b88-a08d-01f2c0bab3b5",
+      "answerType": "text",
+      "correctAnswer": [
+        "Manufacturers"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "4f4ce1e1-6ba4-4742-842f-e3431c1f75d2",
+      "answerType": "text",
+      "correctAnswer": [
+        "colonies"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "5f5ebdbb-93e5-4170-b9c3-045af2d22d3d",
+      "answerType": "text",
+      "correctAnswer": [
+        "cleaner"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "0a326b9d-9e86-4d31-8a45-05fa95a42684",
+      "answerType": "text",
+      "correctAnswer": [
+        "advanced"
+      ],
+      "validation": {
+        "maxWords": 1,
+        "caseSensitive": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "passages": [],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Questions 11-12",
+      "description": "<p>Choose TWO letters, A-E.</p><h3><strong>Which two characteristics of the dinosaur exhibits does the speaker highlight?</strong></h3><p></p>",
+      "presentationConfig": {
+        "type": "select_from_list",
+        "items": [
+          {
+            "questionId": "d7f7bde3-d42e-405a-b5e4-d7853e32cde5"
+          },
+          {
+            "questionId": "0357f38e-d930-44ec-953e-3571cf0426a6"
+          }
+        ],
+        "options": [
+          "bone displays",
+          "posted drawings",
+          "interactive activities",
+          "re-creations of creatures",
+          "explanatory timelines"
+        ]
+      }
+    },
+    {
+      "order": 2,
+      "title": "Questions 13-16",
+      "description": "<p>[Choose the correct letter, A, B, or C]</p>",
+      "presentationConfig": {
+        "type": "single_choice",
+        "items": [
+          {
+            "options": [
+              "It shows how dolphins swim by using models.",
+              "It contains a life-size display of a blue whale.",
+              "It compares the evolution of fish and other species."
+            ],
+            "questionId": "7767746c-ccfe-46bf-8756-cd1a8eb80dc5",
+            "questionText": "<p>What is special about the Under the Sea exhibit?</p>"
+          },
+          {
+            "options": [
+              "their nature as hunters",
+              "how they raise infants",
+              "their cycle of life"
+            ],
+            "questionId": "80f65f07-9b0b-48e8-8562-3e579b59e1c8",
+            "questionText": "<p>What aspect of sharks does the model display in the shark area focus on?</p>"
+          },
+          {
+            "options": [
+              "gardening mechanisms.",
+              "flora from diverse environments.",
+              "rare wildflower seeds."
+            ],
+            "questionId": "ccde96d2-086a-4df1-ad70-d3eb046a0612",
+            "questionText": "<p>The plant life exhibits allow visitors to view displays of</p>"
+          },
+          {
+            "options": [
+              "movie screenings.",
+              "three-dimensional presentations.",
+              "staged demonstrations."
+            ],
+            "questionId": "22f33394-642c-4e42-b06e-0f4701eebcbc",
+            "questionText": "<p>At the Activity zone, human development is depicted through</p>"
+          }
+        ]
+      }
+    },
+    {
+      "order": 3,
+      "title": "Questions 17-20.",
+      "description": "<p>Label the plan below. Write the correct letter, A-G, next to Questions 17-20.</p>",
+      "presentationConfig": {
+        "type": "map_plan_labeling",
+        "items": [
+          {
+            "questionId": "3ac6fdd6-e70b-479b-97c3-91f0658f2154",
+            "questionText": "<p>Information centre</p>"
+          },
+          {
+            "questionId": "ef7af132-692d-475b-90ed-9d0d03f9c22c",
+            "questionText": "<p>Cloakroom</p>"
+          },
+          {
+            "questionId": "ac10bb16-7334-4c02-b24a-e96071fcd332",
+            "questionText": "<p>Children’s activity area</p>"
+          },
+          {
+            "questionId": "13590084-77ed-4b55-b63e-b6595b7abbd8",
+            "questionText": "<p>Gift shop</p>"
+          }
+        ],
+        "assetId": "2f06eaf6-c620-49a8-b1cd-094f6fcdee73",
+        "wordBank": {
+          "reuse": false,
+          "words": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ]
+        },
+        "markerLayout": "question_list"
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "d7f7bde3-d42e-405a-b5e4-d7853e32cde5",
+      "answerType": "multiple_choice",
+      "correctAnswer": [
+        "A"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "0357f38e-d930-44ec-953e-3571cf0426a6",
+      "answerType": "multiple_choice",
+      "correctAnswer": [
+        "D"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "7767746c-ccfe-46bf-8756-cd1a8eb80dc5",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "A"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "80f65f07-9b0b-48e8-8562-3e579b59e1c8",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "C"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "ccde96d2-086a-4df1-ad70-d3eb046a0612",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "B"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "22f33394-642c-4e42-b06e-0f4701eebcbc",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "A"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "3ac6fdd6-e70b-479b-97c3-91f0658f2154",
+      "answerType": "text",
+      "correctAnswer": [
+        "F"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "ef7af132-692d-475b-90ed-9d0d03f9c22c",
+      "answerType": "text",
+      "correctAnswer": [
+        "G"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "ac10bb16-7334-4c02-b24a-e96071fcd332",
+      "answerType": "text",
+      "correctAnswer": [
+        "D"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "13590084-77ed-4b55-b63e-b6595b7abbd8",
+      "answerType": "text",
+      "correctAnswer": [
+        "C"
+      ],
+      "validation": {}
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "passages": [
+    {
+      "order": 1,
+      "title": "The majority of news Is being reported bad news such as wars famines, accidents and crime.",
+      "content": "<p>Why do you think that is?<br>Do you think news should be balance of good news and bad news?</p>",
+      "references": []
+    }
+  ],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Written Response",
+      "description": null,
+      "presentationConfig": {
+        "type": "large_answers",
+        "items": [
+          {
+            "questionId": "154c0497-b309-4fae-99df-72f4c4427cf9",
+            "questionText": "Write your response below."
+          }
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "154c0497-b309-4fae-99df-72f4c4427cf9",
+      "answerType": "text",
+      "correctAnswer": [
+        "Sample response placeholder"
+      ],
+      "validation": {
+        "minWords": 250,
+        "caseSensitive": false
+      }
+    }
+  ]
+}

@@ -117,12 +117,19 @@ def has_duplicates(orders: list[int]) -> bool:
 
 
 def find_heading_drop_ids(html: str) -> list[str]:
-    """Extract data-question-id values from heading-drop divs in passage HTML."""
+    """Extract data-question-id values from heading-drop divs in passage HTML.
+
+    Attribute order is not guaranteed — the platform serializes
+    data-question-id before data-type. Match any <div ...> containing both.
+    """
     if not html or not isinstance(html, str):
         return []
-    # Match <div ...data-type="heading-drop"...data-question-id="...">...</div>
-    pattern = r'<div\b[^>]*data-type="heading-drop"[^>]*data-question-id="([^"]*)"[^>]*>'
-    return re.findall(pattern, html)
+    ids: list[str] = []
+    for tag in re.findall(r"<div\b[^>]*>", html):
+        attrs = dict(re.findall(r'([a-zA-Z-]+)="([^"]*)"', tag))
+        if attrs.get("data-type") == "heading-drop" and attrs.get("data-question-id"):
+            ids.append(attrs["data-question-id"])
+    return ids
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,199 @@
+{
+  "passages": [],
+  "sections": [
+    {
+      "order": 1,
+      "title": "Questions 21-24",
+      "description": "<p>What effect does art therapy have on the following age groups?<br>Choose FOUR answers, write the correct letter, A-E, next to Questions 21-24.</p><p></p><p><strong>Effects of Art Therapy</strong></p><p><strong>A.</strong> assists in motor skill development<br><strong>B.</strong> enhances recall ability<br><strong>C.</strong> enables better expression of feelings<br><strong>D.</strong> helps people recover from traumatic events<br><strong>E.</strong> slows the mental effects of aging</p>",
+      "presentationConfig": {
+        "type": "matching_features",
+        "items": [
+          {
+            "questionId": "00b62850-edaa-4410-8c97-a5c9b38a36dc",
+            "questionText": "<p>Preschool Children</p>"
+          },
+          {
+            "questionId": "73336fe8-9740-493a-9bac-616a066103da",
+            "questionText": "<p>Adolescents</p>"
+          },
+          {
+            "questionId": "58743c81-452b-438d-8fa3-fda6ded22373",
+            "questionText": "<p>Adults</p>"
+          },
+          {
+            "questionId": "eb684464-ba55-4bd4-a72f-b7776ab35966",
+            "questionText": "<p>Senior citizens</p>"
+          }
+        ],
+        "wordBank": {
+          "reuse": false,
+          "words": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ]
+        }
+      }
+    },
+    {
+      "order": 2,
+      "title": "Questions 25-30.",
+      "description": "<p>Choose the correct letter, A, B, or C.</p>",
+      "presentationConfig": {
+        "type": "single_choice",
+        "items": [
+          {
+            "options": [
+              "patients of art therapists",
+              "psychology experts",
+              "website journalists"
+            ],
+            "questionId": "2c88bfeb-d410-4d9a-9cc0-a639b48db1d4",
+            "questionText": "<p>Who will the students conduct interviews with as part of their research?</p>"
+          },
+          {
+            "options": [
+              "There are not many studies that focus on multiple age ranges.",
+              "There is little material written on the selected topic.",
+              "There may be insufficient time to write about all the collected data."
+            ],
+            "questionId": "03d8a15f-4cd2-4d7d-b840-225b5dfa84dd",
+            "questionText": "<p>What is Raymond worried about?</p>"
+          },
+          {
+            "options": [
+              "there is not enough material on people of other ages.",
+              "similar therapies have been used for both groups.",
+              "there is a word limit for the project."
+            ],
+            "questionId": "4f89ef73-4b47-441e-be84-118e78728d60",
+            "questionText": "<p>According to the professor, the students could study preschool children and senior citizens<br>because</p>"
+          },
+          {
+            "options": [
+              "They draw things that they see around them.",
+              "They are hesitant and don’t know what to draw.",
+              "They take to it very quickly."
+            ],
+            "questionId": "7272663a-6ec8-45c2-bf6b-b1e754888d87",
+            "questionText": "<p>How do senior citizens tend to react when asked to express themselves through art</p>"
+          },
+          {
+            "options": [
+              "more physical activity.",
+              "less social interaction.",
+              " improved mental functions."
+            ],
+            "questionId": "113b7f31-7628-48f1-9990-62230783dcbd",
+            "questionText": "<p>Group sessions for both seniors and preschoolers resulted in</p>"
+          },
+          {
+            "options": [
+              "It allows them to express personal feelings.",
+              "It allows them to relax",
+              "It provides them with a sense of unity."
+            ],
+            "questionId": "8a784bff-8c3b-45cd-b493-340358faa7fc",
+            "questionText": "<p>How does art therapy that includes music help patients?</p>"
+          }
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "00b62850-edaa-4410-8c97-a5c9b38a36dc",
+      "answerType": "text",
+      "correctAnswer": [
+        "A"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "73336fe8-9740-493a-9bac-616a066103da",
+      "answerType": "text",
+      "correctAnswer": [
+        "C"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "58743c81-452b-438d-8fa3-fda6ded22373",
+      "answerType": "text",
+      "correctAnswer": [
+        "D"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "eb684464-ba55-4bd4-a72f-b7776ab35966",
+      "answerType": "text",
+      "correctAnswer": [
+        "B"
+      ],
+      "validation": {}
+    },
+    {
+      "id": "2c88bfeb-d410-4d9a-9cc0-a639b48db1d4",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "B"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "03d8a15f-4cd2-4d7d-b840-225b5dfa84dd",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "C"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "4f89ef73-4b47-441e-be84-118e78728d60",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "B"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "7272663a-6ec8-45c2-bf6b-b1e754888d87",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "B"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "113b7f31-7628-48f1-9990-62230783dcbd",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "C"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    },
+    {
+      "id": "8a784bff-8c3b-45cd-b493-340358faa7fc",
+      "answerType": "single_choice",
+      "correctAnswer": [
+        "B"
+      ],
+      "validation": {
+        "caseSensitive": false
+      }
+    }
+  ]
+}

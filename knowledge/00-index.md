@@ -13,6 +13,7 @@
 | `05-generation-guide.md` | Authoring original question sets, structure table, quality rules | AI generation tasks |
 | `06-listening-transcript.md` | `@prepx-audio v1` transcript format for TTS audio | Listening skill tasks |
 | `07-strict-rules.md` | Consolidated rules, edge cases, common pitfalls | **Always** — every generation or conversion |
+| `examples/` | 9 production-validated part files (reading/writing/listening) + pattern notes | **Always** — ground truth for shape and conventions |
 | `validate_part.py` | Python validator — run on every generated file before delivery | Every file delivery |
 
 ---
@@ -24,8 +25,9 @@
 | Convert a PDF to JSON | 01, 02, 03, 04, 07 |
 | Generate an original question set | 01, 02, 03, 05, 07 |
 | Generate a listening part | 01, 02, 03, 05, 06, 07 |
-| Review/validate an existing JSON | 01, 02, 07, validate_part.py |
+| Review/validate an existing JSON | 01, 02, 07, examples/, validate_part.py |
 | Generate a listening transcript | 06, 07 |
+| Study a worked example | examples/ |
 
 ---
 
