@@ -218,7 +218,11 @@ def validate(data: dict) -> dict:
         if not isinstance(ca, list) or len(ca) < 1:
             errors.append(f"questions[{i}].correctAnswer must be a non-empty array")
 
-        val = q.get("validation", {})
+        if "validation" not in q:
+            errors.append(f"questions[{i}].validation is required (use {{}} if empty)")
+            continue
+
+        val = q.get("validation")
         if not isinstance(val, dict):
             errors.append(f"questions[{i}].validation must be an object")
         else:

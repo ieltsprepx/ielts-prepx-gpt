@@ -67,8 +67,8 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 
 ## Validation Object
 
-- Only these keys allowed: `maxWords`, `minWords`, `caseSensitive`, `acceptedAnswers`.
-- No other keys. Omit the entire `validation` object if empty.
+- **Required on every question.** Always include the `validation` object, even when empty (`{}`).
+- Only these keys allowed: `maxWords`, `minWords`, `caseSensitive`, `acceptedAnswers`. No other keys.
 
 ## Listening Transcripts
 

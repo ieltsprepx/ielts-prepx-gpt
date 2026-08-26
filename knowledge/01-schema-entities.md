@@ -121,7 +121,7 @@ Each reference links a passage snippet to a specific question:
 | `id` | UUID v4 | **Required.** Must be unique across the **entire set** (not just this part). Client supplies; server never generates. |
 | `answerType` | enum | Required. One of: `single_choice`, `multiple_choice`, `true_false_ng`, `yes_no_ng`, `text`. See mapping table below. |
 | `correctAnswer` | string[] | Required. Min 1 element. For choices: **option letter(s)** (e.g. `["A"]` or `["A","C"]`). |
-| `validation` | object | Optional. Only these keys allowed: `maxWords`, `minWords`, `caseSensitive`, `acceptedAnswers`. No other keys. |
+| `validation` | object | **Required.** Always include on every question, even when empty (`{}`). Only these keys allowed: `maxWords`, `minWords`, `caseSensitive`, `acceptedAnswers`. No other keys. |
 | `points` | number or null | Optional. Numeric value. |
 
 ### `answerType` Mapping
