@@ -182,28 +182,29 @@ Students match paragraph droppable slots to headings. This type is unique: it em
   "type": "matching_heading",
   "wordBank": { "words": ["The origins of tea", "Global tea trade", "Health effects"], "reuse": false },
   "items": [
-    { "questionId": "<uuid-1>", "questionText": "This paragraph discusses how tea was first cultivated in ancient China." },
-    { "questionId": "<uuid-2>", "questionText": "The passage describes the expansion of tea across continents." }
+    { "questionId": "<uuid-1>", "questionText": "A" },
+    { "questionId": "<uuid-2>", "questionText": "B" }
   ]
 }
 ```
 
 **Hard rules — `matching_heading` only**:
 1. **`items`** = paragraph droppable slots. Each item's `questionId` must have **exactly one** `<div data-type="heading-drop" data-question-id="<uuid>">` block placed in the part's passage HTML content, **immediately before (on top of) the paragraph it belongs to** — never after the paragraph. The builder warns when a heading has no drop zone or shares one with another heading.
-2. **`wordBank.words`** = heading texts **without roman numeral prefixes**. The renderer auto-numbers them (i, ii, iii…). E.g. `["The origins of tea", "Global trade"]` — NOT `["i. The origins of tea"]`.
-3. **`correctAnswer`** = exact heading text from `wordBank.words`. E.g. `["The origins of tea"]`.
-4. **Passage content must be HTML** with the heading-drop divs placed **immediately before** their paragraphs (drop zone renders on top). Example passage content:
+2. **`items[].questionText`** = the **paragraph label only** (`"A"`, `"B"`, …), matching the labels on the passage paragraphs. Never a description or summary of the paragraph.
+3. **`wordBank.words`** = heading texts **without roman numeral prefixes**. The renderer auto-numbers them (i, ii, iii…). E.g. `["The origins of tea", "Global trade"]` — NOT `["i. The origins of tea"]`.
+4. **`correctAnswer`** = exact heading text from `wordBank.words`. E.g. `["The origins of tea"]`.
+5. **Passage content must be HTML** with the heading-drop divs placed **immediately before** their paragraphs (drop zone renders on top). Paragraphs must carry matching labels (`<p>(A) …</p>`). Example passage content:
 
 ```html
 <div data-type="heading-drop" data-question-id="<uuid-1>"></div>
-<p>Tea is one of the most widely consumed beverages in the world.</p>
+<p>(A) Tea is one of the most widely consumed beverages in the world.</p>
 <div data-type="heading-drop" data-question-id="<uuid-2>"></div>
-<p>The practice of drinking tea has a long history in China.</p>
+<p>(B) The practice of drinking tea has a long history in China.</p>
 <div data-type="heading-drop" data-question-id="<uuid-3>"></div>
-<p>By the seventeenth century, tea had become popular across Europe.</p>
+<p>(C) By the seventeenth century, tea had become popular across Europe.</p>
 ```
 
-5. **`reuse`**: typically `false` (headings used once; bank larger than paragraph count).
+6. **`reuse`**: typically `false` (headings used once; bank larger than paragraph count).
 
 ### Other matching types
 
@@ -221,7 +222,7 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 
 | Type | `items[].questionText` | `wordBank.words` | `correctAnswer` | `reuse` |
 |---|---|---|---|---|
-| `matching_heading` | Paragraph description | **Heading texts** (no roman prefix) | Heading text | `false` |
+| `matching_heading` | **Paragraph letter** ("A", "B", …) | **Heading texts** (no roman prefix) | Heading text | `false` |
 | `matching_information` | Statement text | Paragraph letters ("A","B",...) | Letter | usually `true` |
 | `matching_features` | Statement/item text | **Label letters only** ("A","B",...) | Letter | `false` |
 | `matching_sentence_end` | Sentence beginnings | Sentence endings | Ending text | `false` |

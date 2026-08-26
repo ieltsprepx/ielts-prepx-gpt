@@ -59,7 +59,7 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 - `matching_features`: `wordBank.words` = label letters `["A","B","C","D","E"]`. Feature descriptions go in section `description`, NOT in wordBank. `correctAnswer` = letter.
 - `matching_information`: same letter pattern — `wordBank.words` = paragraph letters, `correctAnswer` = letter.
 - `matching_sentence_end`: `wordBank.words` = sentence endings, `correctAnswer` = ending text.
-- **`matching_heading` is special**: `wordBank.words` = **plain heading texts** (no roman numeral prefixes — the renderer auto-numbers them i, ii, iii…). `correctAnswer` = exact heading text from wordBank. Each item needs exactly one `<div data-type="heading-drop" data-question-id="<uuid>">` in the passage HTML. Reuse is typically `false`.
+- **`matching_heading` is special**: `wordBank.words` = **plain heading texts** (no roman numeral prefixes — the renderer auto-numbers them i, ii, iii…). `correctAnswer` = exact heading text from wordBank. `items[].questionText` = the **paragraph letter only** (`"A"`, `"B"`, …) — never a description. Each item needs exactly one `<div data-type="heading-drop" data-question-id="<uuid>">` in the passage HTML, placed immediately before its paragraph. Reuse is typically `false`.
 - Tabular variants are identical in schema, rendered as two-column tables.
 
 ## Visual Types (diagram, flow_chart, map_plan, diagram_labeling)

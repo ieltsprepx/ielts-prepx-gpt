@@ -305,6 +305,12 @@ def validate(data: dict) -> dict:
 
         # matching_heading: heading-drop blocks in passage content
         if ptype == "matching_heading":
+            for j, item in enumerate(items):
+                qt = item.get("questionText", "")
+                if not re.fullmatch(r"[A-Z]", str(qt).strip()):
+                    errors.append(
+                        f"sections[{i}].items[{j}].questionText must be a single paragraph letter (A, B, C, ...), got: {qt!r}"
+                    )
             item_ids = {item.get("questionId", "") for item in items if item.get("questionId")}
             drop_ids = []
             for passage in passages:
