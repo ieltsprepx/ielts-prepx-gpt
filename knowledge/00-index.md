@@ -34,10 +34,14 @@
 ## Critical Rules (Summary)
 
 1. **Files, not chat JSON.** Every artifact is delivered as a file via code interpreter.
-2. **Validate before deliver.** Run `validate_part.py` on every file. 0 errors = deliver.
+2. **Validate before deliver.** Run `validate_part.py` on every file. 0 errors = deliver. Report warnings in the delivery message.
 3. **One part per file.** `{ passages, sections, questions }` only. No wrappers.
 4. **Letters for choices.** `correctAnswer` = option letters (A, B, C…), not text.
 5. **Tiptap native doc.** Completion/grid content = `{"type":"doc",...}`, never HTML.
 6. **Blank positional match.** Blank nodes in content must match `items[]` by count, order, and ID.
 7. **Heading-drop blocks.** For `matching_heading`, passage HTML must include exactly one `<div data-type="heading-drop" data-question-id="<uuid>"></div>` per item, placed **immediately before (on top of) its paragraph**. Words in wordBank are plain heading texts (no roman prefix).
 8. **Passage content is HTML.** Reading passage content uses `<p>` tags. References search the plain-text extraction of the HTML.
+9. **No empty text nodes.** `{"text":""}` anywhere in Tiptap content makes the editor render the section empty. Empty line/cell = paragraph with no `content` array.
+10. **Versioned filenames on regeneration.** The platform caches artifacts by filename — every regenerated file gets a NEW name (`-v2`, `-v3`…), then verify-after-write (re-read from disk) before delivering.
+11. **Classification plan gate.** Every PDF conversion presents a section→type mapping table and waits for user confirmation BEFORE generating (see `04-pdf-to-json.md` Step 4).
+12. **Source grounding.** Never fill missing PDF content from the web or placeholders; never invent transcripts. Ask for the complete source.

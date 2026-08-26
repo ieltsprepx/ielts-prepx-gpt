@@ -106,9 +106,11 @@ Blanks live inside a Tiptap JSON document. `items` mirrors every blank in docume
 - `content` MUST be a native Tiptap `{"type":"doc",...}` document — **never HTML**, never an object with an `html` field.
 - Blank nodes: exactly `{"type":"blank","attrs":{"questionId":"<uuid>"}}`. Inline atom nodes.
 - **Blank count MUST equal `items.length`**. IDs must match positionally in document order. No duplicate blank IDs.
-- `items` contains `{ "questionId": "<uuid>" }` only (no `questionText` — text lives in the template).
+- `items` contains `{ "questionId": "<uuid>" }` only — **no other keys** (no `questionText` — text lives in the template; the importer rejects extra keys).
 - `sentence_completion`: each paragraph = one sentence containing exactly one blank.
 - `wordBank` is **optional** — omit entirely if no word bank. Never emit `{ "words": [], ... }`.
+- **Text nodes must never be empty.** A node `{"type":"text","text":""}` anywhere in Tiptap content makes the editor reject/drop the whole document (renders as empty). For blank space, an empty paragraph has **no `content` array at all** — `{"type":"paragraph"}` — never a paragraph containing an empty text node.
+- **Option-box convention** (when the PDF shows a boxed list of options A–P below a summary/note): `wordBank.words` = the **letters** (`["A","B",…,"P"]`), `correctAnswer` = letters, and the section `description` contains the letter→word mapping as a 2-column HTML `<table>`. Do NOT put the full words in `wordBank` or `correctAnswer`.
 
 ---
 
@@ -166,6 +168,10 @@ Same rules as completion types, but `content` is a Tiptap table structure:
 - Header rows use `"tableHeader"` instead of `"tableCell"`.
 - Blanks mirror `items` in document (reading) order.
 - Same blank count / positional match rules as completion types.
+- **Canonical serialization — do not deviate, do not improvise:**
+  - Hierarchy is exactly `doc → table → tableRow → tableCell/tableHeader → paragraph → text/blank`. The `table` is the only root node inside `doc.content` — put titles/headings in the section `description`, not in the grid document.
+  - Empty text nodes (`{"text":""}`) are **forbidden** — they make the editor drop the entire table. An empty cell is a `paragraph` with no `content` array.
+  - Cell/paragraph `attrs` (e.g. `textAlign`, `colspan`) are **optional**. Production examples carry paragraph `textAlign`; the KB's minimal shape (no attrs) also renders. Never add or remove attrs speculatively while debugging a rendering issue — check for empty text nodes first.
 
 ---
 

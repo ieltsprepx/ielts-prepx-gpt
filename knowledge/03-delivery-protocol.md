@@ -35,6 +35,25 @@ For listening transcript files (`.txt`):
 <set-code>-part-<partNumber>-transcript.txt
 ```
 
+### Versioned filenames on regeneration (mandatory)
+
+The platform **caches artifacts by filename** — if you regenerate a file but keep the same name, the delivered link re-serves the OLD cached version and the user will report "file is not updated". Therefore:
+
+- The **first** delivery of a part uses the base name (`…-part-2.json`).
+- Every **subsequent regeneration** of that part MUST use a new versioned filename: `…-part-2-v2.json`, `…-part-2-v3.json`, …
+- Never overwrite a file and re-link it under the same name.
+- Tell the user explicitly which version to use ("use the v3 file, not v2").
+
+### Verify-after-write (mandatory)
+
+After writing any regenerated file and before linking it:
+
+1. **Re-read the file from disk** (fresh open, not the in-memory object) and confirm the intended change is actually present in the serialized JSON.
+2. Run `validate_part.py` on it.
+3. Only then deliver the link.
+
+Claiming a fix without verifying the serialized file on disk is a delivery failure — in-memory edits do not always reach the file.
+
 ---
 
 ## Part-by-Part Generation Protocol
@@ -75,9 +94,10 @@ Then **stop**. Wait for user confirmation (e.g. "generate part 1").
 For each requested part:
 1. Generate the part JSON.
 2. Write it to a file via code interpreter.
-3. Run `validate_part.py <filename>`.
-4. If 0 errors → deliver file link + concise message.
-5. If errors → fix and re-validate. Never deliver a file that failed validation.
+3. Re-read the file from disk and verify the content (verify-after-write).
+4. Run `validate_part.py <filename>`.
+5. If 0 errors → deliver file link + concise message. Report any validator **warnings** in the same message.
+6. If errors → fix, use a NEW versioned filename, re-validate. Never deliver a file that failed validation.
 
 ### Phase 4: Complete
 
@@ -105,10 +125,10 @@ result = validate_part.validate_file("filename.json")
 print(result)
 ```
 
-**Only deliver if `errors` is empty.** If validation fails:
+**Only deliver if `errors` is empty.** Warnings are non-blocking but MUST be reported to the user in the delivery message (they usually indicate a likely misclassification, e.g. choice questions that should be `select_from_list`). If validation fails:
 - Report the specific error(s) to the user.
 - Fix the JSON.
-- Re-validate.
+- Re-validate with a NEW versioned filename.
 - Deliver only after clean validation.
 
 See `validate_part.py` for the full rule set.

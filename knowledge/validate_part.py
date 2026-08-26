@@ -105,6 +105,35 @@ def walk_tiptap_blanks(content: Any) -> list[str]:
     return blanks
 
 
+def find_empty_text_nodes(content: Any, path: str = "$") -> list[str]:
+    """Find empty text nodes ({"type":"text","text":""}) anywhere in a Tiptap document.
+
+    These make the editor reject/drop the entire document (renders empty).
+    """
+    found: list[str] = []
+    if isinstance(content, dict):
+        if content.get("type") == "text" and content.get("text", "") == "":
+            found.append(path)
+        for key, value in content.items():
+            if key == "content" and isinstance(value, list):
+                for i, child in enumerate(value):
+                    found.extend(find_empty_text_nodes(child, f"{path}.content[{i}]"))
+            elif isinstance(value, (dict, list)):
+                found.extend(find_empty_text_nodes(value, f"{path}.{key}"))
+    elif isinstance(content, list):
+        for i, item in enumerate(content):
+            found.extend(find_empty_text_nodes(item, f"{path}[{i}]"))
+    return found
+
+
+LETTER_RE = re.compile(r"^[A-Z]$")
+
+
+def letter_index(letter: str) -> int:
+    """Option letter (A=0, B=1, ...) → index into an options array."""
+    return ord(letter) - ord("A")
+
+
 def has_gaps(orders: list[int]) -> bool:
     if not orders:
         return False
@@ -138,6 +167,7 @@ def find_heading_drop_ids(html: str) -> list[str]:
 
 def validate(data: dict) -> dict:
     errors: list[str] = []
+    warnings: list[str] = []
 
     # --- Top-level keys ---
     top_keys = set(data.keys())
@@ -198,6 +228,7 @@ def validate(data: dict) -> dict:
     # --- Questions ---
     question_ids: set[str] = set()
     q_id_list: list[str] = []
+    q_by_id: dict[str, dict] = {}
     for i, q in enumerate(questions):
         qid = q.get("id", "")
         if not qid:
@@ -209,6 +240,7 @@ def validate(data: dict) -> dict:
             errors.append(f"questions[{i}].id is a duplicate: {qid}")
         question_ids.add(qid)
         q_id_list.append(qid)
+        q_by_id[qid] = q
 
         at = q.get("answerType", "")
         if at not in VALID_ANSWER_TYPES:
@@ -265,12 +297,30 @@ def validate(data: dict) -> dict:
             errors.append(f"sections[{i}].presentationConfig.type invalid: {ptype}")
             continue
 
-        # Blank types
+        # --- Warning: "more than once" instruction vs reuse flag ---
+        desc = s.get("description") or ""
+        wb_any = config.get("wordBank")
+        if (
+            isinstance(desc, str)
+            and "more than once" in desc.lower()
+            and isinstance(wb_any, dict)
+            and wb_any.get("reuse") is not True
+        ):
+            warnings.append(
+                f"sections[{i}]: description says 'more than once' but wordBank.reuse is not true (got {wb_any.get('reuse')})"
+            )
+
+        # Blank types (completion/grid)
         if ptype in TYPES_WITH_BLANKS:
             content = config.get("content")
             if not isinstance(content, dict) or content.get("type") != "doc":
                 errors.append(f"sections[{i}]: completion type requires content.type === 'doc', got {type(content)}")
             else:
+                empty_nodes = find_empty_text_nodes(content)
+                for ep in empty_nodes:
+                    errors.append(
+                        f"sections[{i}]: empty text node at {ep} — {{\"text\":\"\"}} makes the editor drop the whole document; use a paragraph with no content array instead"
+                    )
                 blanks = walk_tiptap_blanks(content)
                 if len(blanks) != len(items):
                     errors.append(f"sections[{i}]: blank count ({len(blanks)}) != items.length ({len(items)})")
@@ -280,18 +330,78 @@ def validate(data: dict) -> dict:
                         if k < len(blanks) and blanks[k] != item_qid:
                             errors.append(f"sections[{i}]: blank[{k}] questionId {blanks[k]} != items[{k}].questionId {item_qid}")
 
+        # items[] must contain ONLY questionId (importer rejects extra keys)
+        if ptype in TYPES_WITH_BLANKS or ptype in TYPES_WITH_SHARED_OPTIONS:
+            for j, item in enumerate(items):
+                extra_keys = set(item.keys()) - {"questionId"}
+                if extra_keys:
+                    errors.append(
+                        f"sections[{i}].presentationConfig.items[{j}] has extra keys {sorted(extra_keys)} — only 'questionId' is allowed for {ptype}"
+                    )
+
         # Choice with item options
         if ptype in TYPES_WITH_ITEM_OPTIONS:
             for j, item in enumerate(items):
                 opts = item.get("options", [])
                 if len(opts) < 2:
                     errors.append(f"sections[{i}].items[{j}].options must have ≥2 elements")
+                for k, opt in enumerate(opts):
+                    if not isinstance(opt, str) or not opt.strip():
+                        errors.append(f"sections[{i}].items[{j}].options[{k}] must be a non-empty string")
+                # Letter answers must exist within the item's options pool
+                q = q_by_id.get(item.get("questionId", ""))
+                if q is not None:
+                    for ans in q.get("correctAnswer", []):
+                        if LETTER_RE.fullmatch(str(ans)) and letter_index(ans) >= len(opts):
+                            errors.append(
+                                f"sections[{i}].items[{j}]: correctAnswer '{ans}' is outside the options pool ({len(opts)} options)"
+                            )
+            # Warning: multiple_choice items sharing identical options → likely select_from_list
+            if ptype == "multiple_choice":
+                opt_lists = [json.dumps(item.get("options", []), sort_keys=True) for item in items]
+                if len(opt_lists) != len(set(opt_lists)):
+                    warnings.append(
+                        f"sections[{i}]: multiple_choice items share identical options arrays — if these are answer slots picking from one shared pool, use 'select_from_list' instead"
+                    )
 
         # Shared options
         if ptype in TYPES_WITH_SHARED_OPTIONS:
             opts = config.get("options", [])
             if len(opts) < 2:
                 errors.append(f"sections[{i}].presentationConfig.options must have ≥2 elements")
+            for k, opt in enumerate(opts):
+                if not isinstance(opt, str) or not opt.strip():
+                    errors.append(f"sections[{i}].presentationConfig.options[{k}] must be a non-empty string (not an object)")
+            for item in items:
+                q = q_by_id.get(item.get("questionId", ""))
+                if q is not None:
+                    for ans in q.get("correctAnswer", []):
+                        if LETTER_RE.fullmatch(str(ans)) and letter_index(ans) >= len(opts):
+                            errors.append(
+                                f"sections[{i}]: correctAnswer '{ans}' is outside the shared options pool ({len(opts)} options)"
+                            )
+
+        # Statement types: canonical literals
+        if ptype in ("true_false_not_given",):
+            allowed = {"TRUE", "FALSE", "NOT GIVEN"}
+            for item in items:
+                q = q_by_id.get(item.get("questionId", ""))
+                if q is not None:
+                    for ans in q.get("correctAnswer", []):
+                        if str(ans).upper() not in allowed:
+                            errors.append(f"sections[{i}]: true_false_not_given answer must be one of TRUE/FALSE/NOT GIVEN, got: {ans!r}")
+                        elif ans not in allowed:
+                            warnings.append(f"sections[{i}]: statement answer {ans!r} should use canonical uppercase form")
+        if ptype in ("yes_no_not_given",):
+            allowed = {"YES", "NO", "NOT GIVEN"}
+            for item in items:
+                q = q_by_id.get(item.get("questionId", ""))
+                if q is not None:
+                    for ans in q.get("correctAnswer", []):
+                        if str(ans).upper() not in allowed:
+                            errors.append(f"sections[{i}]: yes_no_not_given answer must be one of YES/NO/NOT GIVEN, got: {ans!r}")
+                        elif ans not in allowed:
+                            warnings.append(f"sections[{i}]: statement answer {ans!r} should use canonical uppercase form")
 
         # Matching types
         if ptype in TYPES_REQUIRING_WORD_BANK:
@@ -302,6 +412,19 @@ def validate(data: dict) -> dict:
                 words = wb.get("words", [])
                 if not isinstance(words, list) or len(words) == 0:
                     errors.append(f"sections[{i}].wordBank.words must be a non-empty array")
+                else:
+                    for k, w in enumerate(words):
+                        if not isinstance(w, str) or not w.strip():
+                            errors.append(f"sections[{i}].wordBank.words[{k}] must be a non-empty string")
+                if isinstance(words, list) and words:
+                    for item in items:
+                        q = q_by_id.get(item.get("questionId", ""))
+                        if q is not None:
+                            for ans in q.get("correctAnswer", []):
+                                if ans not in words:
+                                    errors.append(
+                                        f"sections[{i}]: correctAnswer {ans!r} not found in wordBank.words — answers must exactly match a wordBank entry"
+                                    )
 
         # matching_heading: heading-drop blocks in passage content
         if ptype == "matching_heading":
@@ -351,7 +474,7 @@ def validate(data: dict) -> dict:
             if not isinstance(bp, list) or len(bp) == 0:
                 errors.append(f"sections[{i}]: speaking_cue_card requires bulletPoints")
 
-    return {"valid": len(errors) == 0, "errors": errors}
+    return {"valid": len(errors) == 0, "errors": errors, "warnings": warnings}
 
 
 def validate_file(path: str) -> str:
@@ -365,12 +488,18 @@ def validate_file(path: str) -> str:
         return f"INVALID: file not found: {path}"
 
     result = validate(data)
+    out_lines: list[str] = []
     if result["valid"]:
-        return f"VALID: {path}"
-    lines = [f"INVALID: {path} — {len(result['errors'])} error(s):"]
-    for err in result["errors"]:
-        lines.append(f"  - {err}")
-    return "\n".join(lines)
+        out_lines.append(f"VALID: {path}")
+    else:
+        out_lines.append(f"INVALID: {path} — {len(result['errors'])} error(s):")
+        for err in result["errors"]:
+            out_lines.append(f"  - {err}")
+    if result.get("warnings"):
+        out_lines.append(f"WARNING: {len(result['warnings'])} warning(s) (non-blocking, report to user):")
+        for warn in result["warnings"]:
+            out_lines.append(f"  - {warn}")
+    return "\n".join(out_lines)
 
 
 # ---------------------------------------------------------------------------

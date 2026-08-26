@@ -17,6 +17,7 @@ gpt/
 │   ├── 04-pdf-to-json.md
 │   ├── 05-generation-guide.md
 │   ├── 06-listening-transcript.md
+│   ├── 07-strict-rules.md
 │   ├── validate_part.py
 │   └── examples/
 └── .backup/                 # v1 archive (git-ignored)
