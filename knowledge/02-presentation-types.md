@@ -189,16 +189,17 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 ```
 
 **Hard rules — `matching_heading` only**:
-1. **`items`** = paragraph droppable slots. Each item's `questionId` must have **exactly one** `<div data-type="heading-drop" data-question-id="<uuid>">` block placed in the part's passage HTML content. The builder warns when a heading has no drop zone or shares one with another heading.
+1. **`items`** = paragraph droppable slots. Each item's `questionId` must have **exactly one** `<div data-type="heading-drop" data-question-id="<uuid>">` block placed in the part's passage HTML content, **immediately before (on top of) the paragraph it belongs to** — never after the paragraph. The builder warns when a heading has no drop zone or shares one with another heading.
 2. **`wordBank.words`** = heading texts **without roman numeral prefixes**. The renderer auto-numbers them (i, ii, iii…). E.g. `["The origins of tea", "Global trade"]` — NOT `["i. The origins of tea"]`.
 3. **`correctAnswer`** = exact heading text from `wordBank.words`. E.g. `["The origins of tea"]`.
-4. **Passage content must be HTML** with the heading-drop divs placed at the appropriate paragraph positions. Example passage content:
+4. **Passage content must be HTML** with the heading-drop divs placed **immediately before** their paragraphs (drop zone renders on top). Example passage content:
 
 ```html
-<p>Tea is one of the most widely consumed beverages in the world.</p>
 <div data-type="heading-drop" data-question-id="<uuid-1>"></div>
-<p>The practice of drinking tea has a long history in China.</p>
+<p>Tea is one of the most widely consumed beverages in the world.</p>
 <div data-type="heading-drop" data-question-id="<uuid-2>"></div>
+<p>The practice of drinking tea has a long history in China.</p>
+<div data-type="heading-drop" data-question-id="<uuid-3>"></div>
 <p>By the seventeenth century, tea had become popular across Europe.</p>
 ```
 

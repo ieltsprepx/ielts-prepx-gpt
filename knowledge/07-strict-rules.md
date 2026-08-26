@@ -14,7 +14,7 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 ## Passages
 
 - `passages[].content` is an **HTML string** (Tiptap-serialized). Use `<p>` tags for paragraphs.
-- For `matching_heading` sections, the HTML must include `<div data-type="heading-drop" data-question-id="<uuid>"></div>` blocks — one per item, placed at the correct paragraph position.
+- For `matching_heading` sections, the HTML must include `<div data-type="heading-drop" data-question-id="<uuid>"></div>` blocks — one per item, placed **immediately before (on top of) the paragraph it belongs to**, never after it.
 - `references[].text` must be a **verbatim substring** of the passage HTML (rendering re-finds highlights by searching this text). `from`/`to` are best-effort — 0/0 defaults are acceptable if `text` is accurate.
 
 ## Questions

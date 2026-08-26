@@ -39,5 +39,5 @@
 4. **Letters for choices.** `correctAnswer` = option letters (A, B, C…), not text.
 5. **Tiptap native doc.** Completion/grid content = `{"type":"doc",...}`, never HTML.
 6. **Blank positional match.** Blank nodes in content must match `items[]` by count, order, and ID.
-7. **Heading-drop blocks.** For `matching_heading`, passage HTML must include exactly one `<div data-type="heading-drop" data-question-id="<uuid>"></div>` per item. Words in wordBank are plain heading texts (no roman prefix).
+7. **Heading-drop blocks.** For `matching_heading`, passage HTML must include exactly one `<div data-type="heading-drop" data-question-id="<uuid>"></div>` per item, placed **immediately before (on top of) its paragraph**. Words in wordBank are plain heading texts (no roman prefix).
 8. **Passage content is HTML.** Reading passage content uses `<p>` tags. References search the plain-text extraction of the HTML.

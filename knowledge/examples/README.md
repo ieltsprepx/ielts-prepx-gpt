@@ -69,7 +69,7 @@ Production passage HTML serializes attribute order as `data-question-id` **befor
 <div data-question-id="<uuid>" data-type="heading-drop"></div>
 ```
 
-Both attribute orders are valid (the validator accepts either). Each item's `questionId` appears exactly once. In production, `items[].questionText` holds the **paragraph letter** ("A"…"H"), and `wordBank.words` holds plain heading texts (no roman prefixes). `correctAnswer` = the exact heading text.
+Both attribute orders are valid (the validator accepts either). Each item's `questionId` appears exactly once. The drop-zone div is placed **immediately before (on top of) its paragraph** in the passage HTML — never after the paragraph. In production, `items[].questionText` holds the **paragraph letter** ("A"…"H"), and `wordBank.words` holds plain heading texts (no roman prefixes). `correctAnswer` = the exact heading text.
 
 ### `select_from_list`
 
