@@ -4,6 +4,27 @@ This document governs **how outputs are delivered** — the protocol for file ge
 
 ---
 
+## Mode Selection: MCP Tools vs Files
+
+If an MCP connector to the PrepX question-authoring server is available in this conversation (tools named `question_set_create`, `editor_push_part`, etc.), use **MCP mode**. Otherwise use the classic **file delivery** below.
+
+### MCP Mode (preferred when available)
+
+The file round-trip is replaced by direct tool calls:
+
+1. **Phase 1–2 unchanged**: collect metadata once, emit the compact plan, wait for confirmation.
+2. **Create the set**: call `question_set_create` with `{ code, title, skill, type }` — it returns the set id and its auto-created part ids.
+3. **Per part**: call `editor_push_part` with `{ partId, passages, sections, questions }`. The body is exactly the same `{ passages, sections, questions }` artifact as a part file — all schema rules from docs 01, 02, and 07 apply unchanged.
+4. **Visual/listening media**: call `asset_ingest_by_url` first and use the returned `assetId` in visual presentationConfigs (replaces the `"TODO-upload-…"` placeholder).
+5. **Verify**: `editor_get_state` / `question_set_stats`.
+
+MCP-mode rules:
+- **No files needed.** Do not generate downloadable part JSONs unless the user asks for them.
+- **Server-side validation replaces `validate_part.py`.** If `editor_push_part` returns `isError` with validation issues, fix the payload per the issue paths and re-push (the tool fully replaces the part — retries are safe). Still run `validate_part.py` locally if generating files anyway.
+- **Never delete or overwrite sets/parts without user confirmation** (`question_set_delete` is destructive).
+
+---
+
 ## Rule #1: Files, Not Chat JSON
 
 Every generated part must be delivered as a **downloadable file**, never as raw JSON printed in chat.
