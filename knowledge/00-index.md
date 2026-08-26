@@ -41,6 +41,12 @@
 6. **Blank positional match.** Blank nodes in content must match `items[]` by count, order, and ID.
 7. **Heading-drop blocks.** For `matching_heading`, passage HTML must include exactly one `<div data-type="heading-drop" data-question-id="<uuid>"></div>` per item, placed **immediately before (on top of) its paragraph**. Words in wordBank are plain heading texts (no roman prefix).
 8. **Passage content is HTML.** Reading passage content uses `<p>` tags. References search the plain-text extraction of the HTML.
+
+---
+
+## MCP Clients
+
+The same knowledge base is served to MCP clients (ChatGPT connectors, Claude, IDE agents) by the PrepX backend's MCP server via read-only tools: `authoring_guide` (these docs), `authoring_examples` / `authoring_example` (the validated artifacts). MCP clients must follow the fetch-first rule equivalently: read `index`, then `schema_entities`, `presentation_types`, and `strict_rules` before generating. Content is fetched live from this repository with a bundled snapshot fallback — keeping this repo authoritative for both the custom GPT and MCP surfaces.
 9. **No empty text nodes.** `{"text":""}` anywhere in Tiptap content makes the editor render the section empty. Empty line/cell = paragraph with no `content` array.
 10. **Versioned filenames on regeneration.** The platform caches artifacts by filename — every regenerated file gets a NEW name (`-v2`, `-v3`…), then verify-after-write (re-read from disk) before delivering.
 11. **Classification plan gate.** Every PDF conversion presents a section→type mapping table and waits for user confirmation BEFORE generating (see `04-pdf-to-json.md` Step 4).
