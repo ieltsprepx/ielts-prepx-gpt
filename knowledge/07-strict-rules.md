@@ -11,6 +11,12 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 - Never print the full JSON into chat unless the user explicitly asks.
 - Never claim a file exists unless it was actually created and passed validation.
 
+## Sections
+
+- `sections[].description` is a **rich-text HTML string** (Tiptap-serialized), never plain text — wrap instructions in `<p>` tags, use `<br>` for line breaks. Allowed tags: `p, br, strong, em, u, s, h2–h4, ul, ol, li, table` family, `code`, `pre`. No scripts/styles/iframes/images.
+- `null` is valid when there are no instructions.
+- Feature lists (`matching_features`) and word-limit sentences live in the description HTML — see `01-schema-entities.md` for the full format contract.
+
 ## Passages
 
 - `passages[].content` is an **HTML string** (Tiptap-serialized). Use `<p>` tags for paragraphs.

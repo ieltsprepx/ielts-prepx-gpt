@@ -81,7 +81,7 @@ Each reference links a passage snippet to a specific question:
 {
   "order": 1,
   "title": "Questions 1–5",
-  "description": "Complete the notes below. Write NO MORE THAN TWO WORDS...",
+  "description": "<p>Complete the notes below.<br>Write NO MORE THAN TWO WORDS from the passage for each answer.</p>",
   "presentationConfig": { "type": "...", ... }
 }
 ```
@@ -90,8 +90,21 @@ Each reference links a passage snippet to a specific question:
 |---|---|---|
 | `order` | integer (1–100) | Sequential starting at 1, no gaps, no duplicates. |
 | `title` | string | Required. Use "Questions X–Y" convention for question numbering. |
-| `description` | string or `null` | Instructions from the exam paper. |
+| `description` | string or `null` | Instructions from the exam paper. **Rich-text HTML string** (Tiptap-serialized) — see below. |
 | `presentationConfig` | object | Required. Discriminated union on `"type"` — see `02-presentation-types.md`. |
+
+### Section description format
+
+`description` is an **HTML string** (Tiptap-serialized, DOMPurify-safe), rendered via `dangerouslySetInnerHTML`. It is NOT plain text.
+
+- Wrap every instruction line in block tags: `<p>...</p>`.
+- Use `<br>` (or `<br data-mce-serialization="native">`) for line breaks inside a paragraph.
+- Use `<strong>` / `<em>` for emphasis (e.g. `<strong>A.</strong>` labels).
+- Use `<h3>` headings when the real exam paper shows a sub-heading above the instructions (common for multiple_choice).
+- Use `<table style="width: ...">` markup when the exam paper presents TRUE/FALSE/NOT GIVEN or YES/NO/NOT GIVEN meaning tables (see `reading-aphantasia-part-3.json` example).
+- Feature lists for `matching_features`, letter lists, and word-limit sentences ("Write NO MORE THAN TWO WORDS...") belong here as HTML.
+- Allowed tags: `p, br, strong, em, u, s, h2, h3, h4, ul, ol, li, table, thead, tbody, tr, td, th, colgroup, col, code, pre`. No scripts, styles, iframes, or images.
+- `null` is valid when a section has no instructions (e.g. writing/speaking parts).
 
 **Constraints**:
 - Every section must reference **at least one** question.
