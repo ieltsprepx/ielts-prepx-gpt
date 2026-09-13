@@ -2,6 +2,8 @@
 
 This document consolidates every non-obvious rule, historical mistake, and edge-case that the GPT must enforce. Read this for every generation, conversion, or validation task.
 
+> Bullets that duplicate a rule already caught automatically by `QEditorReplaceBodySchema`/`validate_part.py` (e.g. blank-count/position matching, options-array length) were trimmed — see `01-schema-entities.md` for those. This doc keeps the rules the validator can't catch for you: heuristics, conventions, and historical mistakes.
+
 ---
 
 ## Artifact Structure
@@ -33,7 +35,6 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 
 - `correctAnswer` = **option letters**, not option text. First option = A, second = B, etc.
 - Single choice: exactly one letter. Multiple choice: two or more letters.
-- Options array must have ≥ 2 non-empty strings. Do not include letter prefixes in option text.
 
 ## Select From List
 
@@ -48,7 +49,6 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 
 - `presentationConfig.content` must be a native Tiptap `{"type":"doc","content":[...]}` — **never HTML**, never an object with an `html` field.
 - Blank nodes: exactly `{"type":"blank","attrs":{"questionId":"<uuid>"}}`. Inline atom nodes.
-- **Blank count MUST equal `items.length`**. IDs must match positionally in document order. No duplicate blank IDs.
 - `items` contains `{ "questionId": "<uuid>" }` only — no `questionText` (text lives in the Tiptap template).
 - Grid types use Tiptap table structure: `doc → table → tableRow → tableCell/tableHeader → paragraph → blank`.
 - **Empty text nodes are forbidden.** Never emit `{"type":"text","text":""}` anywhere in Tiptap content — the editor rejects the whole document and renders it empty. An empty line/cell = a `paragraph` with no `content` array.

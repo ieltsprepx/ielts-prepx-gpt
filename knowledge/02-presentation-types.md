@@ -1,5 +1,9 @@
 # 02 — Presentation Config Catalog (All 24 Types)
 
+> **Reference doc, not the authoring path.** Write content as Markdown + markers per
+> `08-authoring-markdown.md` — this document describes the underlying JSON shapes the converter
+> (or your own file-mode output) produces, for when `08`'s per-family notes aren't detailed enough.
+
 `presentationConfig` is a discriminated union on the `"type"` field. This document defines the exact JSON shape for every type. Follow each shape precisely — the schema validates strictly.
 
 > Derived from: `presentation-config/index.ts`, `common.ts`, `answers-schema.ts`, `choice-schema.ts`, `statement-schema.ts`, `completion-schema.ts`, `grid-schema.ts`, `matching-schema.ts`, `visual-schema.ts`, `speaking-schema.ts`
@@ -13,9 +17,7 @@
 ```json
 {
   "type": "true_false_not_given",
-  "items": [
-    { "questionId": "<uuid>", "questionText": "The statement text..." }
-  ]
+  "items": [{ "questionId": "<uuid>", "questionText": "The statement text..." }]
 }
 ```
 
@@ -94,15 +96,13 @@ Blanks live inside a Tiptap JSON document. `items` mirrors every blank in docume
       }
     ]
   },
-  "items": [
-    { "questionId": "<uuid>" },
-    { "questionId": "<uuid>" }
-  ],
+  "items": [{ "questionId": "<uuid>" }, { "questionId": "<uuid>" }],
   "wordBank": { "words": ["word1", "word2"], "reuse": false }
 }
 ```
 
 **Hard rules**:
+
 - `content` MUST be a native Tiptap `{"type":"doc",...}` document — **never HTML**, never an object with an `html` field.
 - Blank nodes: exactly `{"type":"blank","attrs":{"questionId":"<uuid>"}}`. Inline atom nodes.
 - **Blank count MUST equal `items.length`**. IDs must match positionally in document order. No duplicate blank IDs.
@@ -137,9 +137,7 @@ Same rules as completion types, but `content` is a Tiptap table structure:
                 "content": [
                   {
                     "type": "paragraph",
-                    "content": [
-                      { "type": "text", "text": "Header text" }
-                    ]
+                    "content": [{ "type": "text", "text": "Header text" }]
                   }
                 ]
               },
@@ -186,7 +184,10 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 ```json
 {
   "type": "matching_heading",
-  "wordBank": { "words": ["The origins of tea", "Global tea trade", "Health effects"], "reuse": false },
+  "wordBank": {
+    "words": ["The origins of tea", "Global tea trade", "Health effects"],
+    "reuse": false
+  },
   "items": [
     { "questionId": "<uuid-1>", "questionText": "A" },
     { "questionId": "<uuid-2>", "questionText": "B" }
@@ -195,6 +196,7 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 ```
 
 **Hard rules — `matching_heading` only**:
+
 1. **`items`** = paragraph droppable slots. Each item's `questionId` must have **exactly one** `<div data-type="heading-drop" data-question-id="<uuid>">` block placed in the part's passage HTML content, **immediately before (on top of) the paragraph it belongs to** — never after the paragraph. The builder warns when a heading has no drop zone or shares one with another heading.
 2. **`items[].questionText`** = the **paragraph label only** (`"A"`, `"B"`, …), matching the labels on the passage paragraphs. Never a description or summary of the paragraph.
 3. **`wordBank.words`** = heading texts **without roman numeral prefixes**. The renderer auto-numbers them (i, ii, iii…). E.g. `["The origins of tea", "Global trade"]` — NOT `["i. The origins of tea"]`.
@@ -226,17 +228,18 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 
 ### Types and semantics
 
-| Type | `items[].questionText` | `wordBank.words` | `correctAnswer` | `reuse` |
-|---|---|---|---|---|
-| `matching_heading` | **Paragraph letter** ("A", "B", …) | **Heading texts** (no roman prefix) | Heading text | `false` |
-| `matching_information` | Statement text | Paragraph letters ("A","B",...) | Letter | usually `true` |
-| `matching_features` | Statement/item text | **Label letters only** ("A","B",...) | Letter | `false` |
-| `matching_sentence_end` | Sentence beginnings | Sentence endings | Ending text | `false` |
-| `matching_features_tabular` | Same as `matching_features` | Same | Same | Same |
-| `matching_heading_tabular` | Same as `matching_heading` | Same | Same | Same |
-| `matching_information_tabular` | Same as `matching_information` | Same | Same | Same |
+| Type                           | `items[].questionText`             | `wordBank.words`                     | `correctAnswer` | `reuse`        |
+| ------------------------------ | ---------------------------------- | ------------------------------------ | --------------- | -------------- |
+| `matching_heading`             | **Paragraph letter** ("A", "B", …) | **Heading texts** (no roman prefix)  | Heading text    | `false`        |
+| `matching_information`         | Statement text                     | Paragraph letters ("A","B",...)      | Letter          | usually `true` |
+| `matching_features`            | Statement/item text                | **Label letters only** ("A","B",...) | Letter          | `false`        |
+| `matching_sentence_end`        | Sentence beginnings                | Sentence endings                     | Ending text     | `false`        |
+| `matching_features_tabular`    | Same as `matching_features`        | Same                                 | Same            | Same           |
+| `matching_heading_tabular`     | Same as `matching_heading`         | Same                                 | Same            | Same           |
+| `matching_information_tabular` | Same as `matching_information`     | Same                                 | Same            | Same           |
 
 **Hard rules**:
+
 - `matching_features`: the shared feature list is described in the section `description`, NOT in `wordBank.words`. WordBank contains only label letters `["A","B","C","D","E"]`. Correct answer is the letter.
 - `matching_information`: same letter pattern as features — `wordBank.words` = paragraph letters, `correctAnswer` = letter.
 - Tabular variants are identical in schema, rendered as two-column tables. Prefer tabular when PDF shows table layout.
@@ -269,6 +272,7 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 ```
 
 **Rules**:
+
 - `assetId`: required non-empty string. Use descriptive placeholder like `"TODO-upload-map-p1"` when no image available.
 - `markerLayout`:
   - `"on_image"` / `"below_image"` (default): each item REQUIRES `position {x, y}` (0–100 percentage coordinates). `questionText` optional.
@@ -286,7 +290,10 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 {
   "type": "short_answers",
   "items": [
-    { "questionId": "<uuid>", "questionText": "What is the maximum height of...?" }
+    {
+      "questionId": "<uuid>",
+      "questionText": "What is the maximum height of...?"
+    }
   ]
 }
 ```
@@ -304,7 +311,10 @@ Students match paragraph droppable slots to headings. This type is unique: it em
 {
   "type": "speaking_interview",
   "items": [
-    { "questionId": "<uuid>", "questionText": "Do you work or are you a student?" }
+    {
+      "questionId": "<uuid>",
+      "questionText": "Do you work or are you a student?"
+    }
   ]
 }
 ```
@@ -322,9 +332,7 @@ Students match paragraph droppable slots to headings. This type is unique: it em
   ],
   "prepTimeSeconds": 60,
   "speakingTimeSeconds": 120,
-  "items": [
-    { "questionId": "<uuid>", "questionText": "Follow-up question..." }
-  ]
+  "items": [{ "questionId": "<uuid>", "questionText": "Follow-up question..." }]
 }
 ```
 
@@ -343,6 +351,7 @@ Every blank node in Tiptap `content` must be exactly:
 ```
 
 **Properties**:
+
 - `type`: literal `"blank"`.
 - `attrs.questionId`: UUID matching the corresponding `items[]` entry.
 - Inline atom node (group: "inline", inline: true, atom: true in Tiptap schema).
@@ -351,6 +360,7 @@ Every blank node in Tiptap `content` must be exactly:
 ### Validation algorithm
 
 To verify blank↔items match:
+
 1. Walk `content` recursively, collecting all nodes with `type === "blank"` in document order.
 2. Assert `blankCount === items.length`.
 3. Assert `blanks[i].attrs.questionId === items[i].questionId` for every index.
@@ -360,11 +370,11 @@ To verify blank↔items match:
 
 ## Quick Reference: Type → answerType
 
-| Type | `answerType` |
-|---|---|
-| `single_choice` | `single_choice` |
-| `multiple_choice` | `multiple_choice` |
-| `select_from_list` | `multiple_choice` |
-| `true_false_not_given` | `true_false_ng` |
-| `yes_no_not_given` | `yes_no_ng` |
-| Everything else | `text` |
+| Type                   | `answerType`      |
+| ---------------------- | ----------------- |
+| `single_choice`        | `single_choice`   |
+| `multiple_choice`      | `multiple_choice` |
+| `select_from_list`     | `multiple_choice` |
+| `true_false_not_given` | `true_false_ng`   |
+| `yes_no_not_given`     | `yes_no_ng`       |
+| Everything else        | `text`            |

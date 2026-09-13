@@ -6,17 +6,19 @@ Nine real part artifacts converted from a platform question-set export (`export-
 
 ## File Index
 
-| File | Skill | Part | Presentation types | Notable features |
-|---|---|---|---|---|
-| `writing-day-one-part-1.json` | writing | Task 1 | `large_answers` | HTML passage with embedded `<img>`; `minWords: 150` |
-| `writing-day-one-part-2.json` | writing | Task 2 | `large_answers` | Essay prompt passage; `minWords: 250` |
-| `reading-aphantasia-part-1.json` | reading | Passage 1 | `true_false_not_given`, `sentence_completion` | `orderedList` with `attrs.start: 9`; `hardBreak`; `maxWords: 2` |
-| `reading-aphantasia-part-2.json` | reading | Passage 2 | `matching_heading`, `sentence_completion`, `single_choice` | heading-drop divs in passage HTML; `attrs.start: 22`; wordBank = heading texts |
-| `reading-aphantasia-part-3.json` | reading | Passage 3 | `true_false_not_given`, `single_choice`, `summary_completion` | table HTML inside section description; summary as one paragraph with `hardBreak`s |
-| `listening-tennis-court-part-1.json` | listening | Part 1 | `note_completion` | single paragraph, `hardBreak`-separated bullets, bold note headings, `acceptedAnswers` number alternates |
-| `listening-tennis-court-part-2.json` | listening | Part 2 | `select_from_list`, `single_choice`, `map_plan_labeling` | shared options pool; `markerLayout: "question_list"`; letter wordBank A–G; `assetId` |
-| `listening-tennis-court-part-3.json` | listening | Part 3 | `matching_features`, `single_choice` | feature list (A–E) lives in section `description` HTML; wordBank = label letters |
-| `listening-tennis-court-part-4.json` | listening | Part 4 | `note_completion` | `bulletList` blocks under bold headings; ONE WORD ONLY → `maxWords: 1` |
+| File                                 | Skill     | Part      | Presentation types                                            | Notable features                                                                                         |
+| ------------------------------------ | --------- | --------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `writing-day-one-part-1.json`        | writing   | Task 1    | `large_answers`                                               | HTML passage with embedded `<img>`; `minWords: 150`                                                      |
+| `writing-day-one-part-2.json`        | writing   | Task 2    | `large_answers`                                               | Essay prompt passage; `minWords: 250`                                                                    |
+| `reading-aphantasia-part-1.json`     | reading   | Passage 1 | `true_false_not_given`, `sentence_completion`                 | `orderedList` with `attrs.start: 9`; `hardBreak`; `maxWords: 2`                                          |
+| `reading-aphantasia-part-2.json`     | reading   | Passage 2 | `matching_heading`, `sentence_completion`, `single_choice`    | heading-drop divs in passage HTML; `attrs.start: 22`; wordBank = heading texts                           |
+| `reading-aphantasia-part-3.json`     | reading   | Passage 3 | `true_false_not_given`, `single_choice`, `summary_completion` | table HTML inside section description; summary as one paragraph with `hardBreak`s                        |
+| `listening-tennis-court-part-1.json` | listening | Part 1    | `note_completion`                                             | single paragraph, `hardBreak`-separated bullets, bold note headings, `acceptedAnswers` number alternates |
+| `listening-tennis-court-part-2.json` | listening | Part 2    | `select_from_list`, `single_choice`, `map_plan_labeling`      | shared options pool; `markerLayout: "question_list"`; letter wordBank A–G; `assetId`                     |
+| `listening-tennis-court-part-3.json` | listening | Part 3    | `matching_features`, `single_choice`                          | feature list (A–E) lives in section `description` HTML; wordBank = label letters                         |
+| `listening-tennis-court-part-4.json` | listening | Part 4    | `note_completion`                                             | `bulletList` blocks under bold headings; ONE WORD ONLY → `maxWords: 1`                                   |
+
+`reading-aphantasia-part-1.md` is a **Markdown-form counterpart** of `reading-aphantasia-part-1.json` — it shows the actual Markdown + `[[qN]]`-marker authoring input (per `08-authoring-markdown.md`) that the one-way converter turns into that JSON's shapes. Every other example here is JSON-only (the storage format), since the Markdown authoring format is new as of `08-authoring-markdown.md` and most examples predate it.
 
 ---
 
@@ -30,13 +32,13 @@ The source export wraps everything in a whole-set envelope:
 
 The editor accepts **none of that**. Each part file is exactly `{ passages, sections, questions }` (see `01-schema-entities.md`). Conversion applied:
 
-| Export field | Part artifact |
-|---|---|
-| `questionSets[].parts[].questions[]._id` | `questions[].id` |
-| `questions[].order` | **dropped** — server recomputes order by walking sections in order |
-| set-level `assets` (listening audio, images) | **dropped** — not representable in a part artifact; uploaded separately |
-| `part.title`, `part.order`, set `code`/`title`/`skill`/`type` | **dropped** — envelope metadata, rejected by the editor |
-| `passages[].references` (absent in export) | `[]` |
+| Export field                                                  | Part artifact                                                           |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `questionSets[].parts[].questions[]._id`                      | `questions[].id`                                                        |
+| `questions[].order`                                           | **dropped** — server recomputes order by walking sections in order      |
+| set-level `assets` (listening audio, images)                  | **dropped** — not representable in a part artifact; uploaded separately |
+| `part.title`, `part.order`, set `code`/`title`/`skill`/`type` | **dropped** — envelope metadata, rejected by the editor                 |
+| `passages[].references` (absent in export)                    | `[]`                                                                    |
 
 File naming here uses readable slugs for documentation; real deliveries follow `<set-code>-part-<n>.json` (see `03-delivery-protocol.md`).
 
@@ -54,10 +56,10 @@ File naming here uses readable slugs for documentation; real deliveries follow `
 
 ### `maxWords` from instruction wording
 
-| Instruction | `validation.maxWords` |
-|---|---|
-| "ONE WORD ONLY" / "ONLY ONE WORD" | `1` |
-| "NO MORE THAN TWO WORDS" | `2` |
+| Instruction                       | `validation.maxWords` |
+| --------------------------------- | --------------------- |
+| "ONE WORD ONLY" / "ONLY ONE WORD" | `1`                   |
+| "NO MORE THAN TWO WORDS"          | `2`                   |
 
 Always pair with `caseSensitive: false`.
 
