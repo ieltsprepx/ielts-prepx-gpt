@@ -54,7 +54,7 @@ This document governs how the AI **authors original IELTS question sets** (not c
 
 ### Listening
 
-Since no audio exists yet, write the full transcript into `passages[0].content`, prefixed with `[TRANSCRIPT]`. Sections should reference where answers occur via `references[]`.
+Keep `passages` EMPTY in listening part files — the transcript is NOT part of the JSON. The platform stores each Listening set's transcript in a dedicated per-set transcript entity (voice cast + speech segments, tagged by section), authored in the editor's transcript panel (AI-generated section by section, or typed by hand). Optionally deliver a `@prepx-audio v1` `.txt` (see `06-listening-transcript.md`) as a portable reference the author can transfer from. Design sections so every answer is answerable from what the recording would actually say.
 
 ### Section Descriptions
 

@@ -138,9 +138,9 @@ When the PDF contains images, diagrams, or maps:
 
 When the PDF is an IELTS listening paper:
 
-1. **Transcript**: Extract the audio script. Place it in `passages[0].content` as a plain text block prefixed with `[TRANSCRIPT]`.
+1. **Transcript**: Extract the audio script, but do NOT put it in the part JSON — listening part files keep `passages` empty (the platform stores transcripts in a dedicated per-set transcript entity, authored in the editor's transcript panel).
 2. **Questions**: Extract as usual, following part-by-part structure (Part 1–4).
-3. **Transcript delivery**: Also deliver the transcript as a separate `.txt` file in `@prepx-audio v1` format (see `06-listening-transcript.md`).
+3. **Transcript delivery**: Deliver the transcript as a separate `.txt` file in `@prepx-audio v1` format (see `06-listening-transcript.md`) so the author can transfer it into the transcript panel.
 
 ---
 

@@ -6,9 +6,12 @@ This document governs **how outputs are delivered** — the protocol for file ge
 
 ## Mode Selection: MCP Tools vs Files
 
+> **MCP mode is BETA — internal dev testing only, not available in the public
+> release.** Regular users of this GPT always use file delivery.
+
 If an MCP connector to the PrepX question-authoring server is available in this conversation (tools named `question_set_create`, `editor_push_part`, etc.), use **MCP mode**. Otherwise use the classic **file delivery** below.
 
-### MCP Mode (preferred when available)
+### MCP Mode — BETA (internal dev testing only)
 
 The file round-trip is replaced by direct tool calls:
 
@@ -163,15 +166,15 @@ When converting a PDF:
 2. Ask about missing answer keys (one question, one time).
 3. Generate parts following the same file-per-part protocol.
 4. Each part file is a valid `{ passages, sections, questions }` object.
-5. Transcript content (listening) goes into `passages[0].content`, prefixed with `[TRANSCRIPT]`.
+5. Listening PDFs: the part JSON keeps `passages` EMPTY — deliver the transcript as a separate `@prepx-audio v1` `.txt` instead (see `06-listening-transcript.md`); the platform stores it in the set's dedicated transcript entity.
 
 ---
 
 ## Listening Transcripts
 
 When generating listening parts:
-1. Deliver the transcript as a separate `.txt` file in `@prepx-audio v1` format.
-2. Deliver the question set part as a separate `.json` file.
+1. Deliver the question set part as a `.json` file with `passages` empty — never embed the transcript in the part JSON (the old `passages[0].content` + `[TRANSCRIPT]` convention is retired).
+2. Optionally deliver the transcript as a separate `.txt` file in `@prepx-audio v1` format, as a portable reference the author transfers into the editor's transcript panel.
 3. Both files must be validated independently.
 
 The transcript format is defined in `06-listening-transcript.md`.

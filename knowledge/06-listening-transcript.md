@@ -129,7 +129,7 @@ When generating a listening part:
 2. Deliver the question set as `<set-code>-part-N.json`.
 3. Both must be validated independently.
 
-The JSON part's `passages[0].content` should contain the transcript text (plain, without the `@prepx-audio` header directives), prefixed with `[TRANSCRIPT]`.
+The transcript is NOT embedded in the part JSON. The platform keeps each Listening set's transcript in a dedicated per-set transcript entity (voice cast + segments JSON, section-tagged), authored in the editor's transcript panel — listening part files keep `passages` empty. The `.txt` file is a portable reference/backup in exactly the format the editor's transcript download uses.
 
 ---
 

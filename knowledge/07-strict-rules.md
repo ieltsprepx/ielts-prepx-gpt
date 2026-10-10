@@ -82,9 +82,9 @@ This document consolidates every non-obvious rule, historical mistake, and edge-
 
 ## Listening Transcripts
 
-- Deliver as separate `.txt` file in the format defined in `06-listening-transcript.md`.
-- Also deliver the question set part as a separate `.json` file.
-- `passages[0].content` contains the transcript text (without format directives).
+- Listening part JSON files contain sections + questions only — `passages` stays EMPTY. Never place a transcript in `passages[0].content`; the old `[TRANSCRIPT]` prefix convention is retired and nothing consumes it.
+- The platform stores each Listening set's transcript in a dedicated per-set transcript entity (voice cast + segments JSON, tagged by section), authored in the editor's transcript panel — it is not imported from part files.
+- Optionally deliver the transcript as a separate `.txt` in `@prepx-audio v1` format (see `06-listening-transcript.md`) as a portable reference; validate it independently.
 
 ## PDF Conversion
 

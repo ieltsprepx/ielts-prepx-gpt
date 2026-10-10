@@ -36,7 +36,7 @@ These are the **only three keys** allowed in a part artifact. Do NOT wrap in `{ 
 | ------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `order`      | integer (1–100) | Sequential starting at 1, no gaps, no duplicates.                                                                                                                                                                                                                         |
 | `title`      | string          | Required.                                                                                                                                                                                                                                                                 |
-| `content`    | string          | Required. **HTML string** — the passage content including paragraph tags. For `matching_heading` sections, the HTML must include heading-drop div blocks (see below). For listening transcripts, this is the plain transcript text (may be prefixed with `[TRANSCRIPT]`). |
+| `content`    | string          | Required. **HTML string** — the passage content including paragraph tags. For `matching_heading` sections, the HTML must include heading-drop div blocks (see below). Listening part files keep `passages` empty — transcripts live in the platform's dedicated per-set transcript entity (see `06-listening-transcript.md`). |
 | `references` | array           | Optional (default `[]`). See `references[]` schema below.                                                                                                                                                                                                                 |
 
 **Sorting**: After parsing, passages are sorted by `order` ascending. Duplicate orders are rejected.
@@ -46,7 +46,7 @@ These are the **only three keys** allowed in a part artifact. Do NOT wrap in `{ 
 `content` is an **HTML string** (Tiptap-serialized, DOMPurify-safe). The rendering engine parses it with `DOMParser` and renders via `dangerouslySetInnerHTML`.
 
 - **Reading passages**: standard `<p>` tags for paragraphs, plus heading-drop divs for `matching_heading` sections.
-- **Listening transcripts**: plain text (no HTML tags required), typically prefixed with `[TRANSCRIPT]`.
+- **Listening**: part files contain sections + questions only, with `passages` EMPTY — the transcript is a separate per-set entity in the platform, never passage content. No `[TRANSCRIPT]` prefix exists anymore.
 - **`matching_heading` passages** require heading-drop blocks — see "Heading-Drop Contract" in `02-presentation-types.md`.
 
 ### `references[]`
