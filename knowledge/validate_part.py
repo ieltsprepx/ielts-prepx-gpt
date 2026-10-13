@@ -105,6 +105,36 @@ def walk_tiptap_blanks(content: Any) -> list[str]:
     return blanks
 
 
+def find_number_markers_before_blanks(content: Any) -> list[str]:
+    """Text nodes directly preceding a blank that still carry a "(N)" marker.
+
+    The blank node renders the question number itself — the marker is
+    redundant and renders as "(31) [blank]".
+    """
+    found: list[str] = []
+    tail_res = [re.compile(r"\s*\(\d{1,2}\)\s*[:.]?\s*$"), re.compile(r"\s\d{1,2}[.)]\s*$")]
+
+    def scan(arr: list) -> None:
+        for i in range(len(arr) - 1):
+            cur, nxt = arr[i], arr[i + 1]
+            if (
+                isinstance(cur, dict)
+                and cur.get("type") == "text"
+                and isinstance(nxt, dict)
+                and nxt.get("type") == "blank"
+            ):
+                text = str(cur.get("text", ""))
+                if any(r.search(text) for r in tail_res):
+                    found.append(text[-30:])
+        for el in arr:
+            if isinstance(el, dict) and isinstance(el.get("content"), list):
+                scan(el["content"])
+
+    if isinstance(content, dict) and isinstance(content.get("content"), list):
+        scan(content["content"])
+    return found
+
+
 def find_empty_text_nodes(content: Any, path: str = "$") -> list[str]:
     """Find empty text nodes ({"type":"text","text":""}) anywhere in a Tiptap document.
 
@@ -189,6 +219,17 @@ def validate(data: dict) -> dict:
             errors.append(f"passages[{i}].title must be a non-empty string")
         if "content" not in p or not isinstance(p.get("content"), str):
             errors.append(f"passages[{i}].content must be a string")
+        else:
+            m = re.match(r"^\s*<p[^>]*>([\s\S]*?)</p>", p.get("content") or "", re.I)
+            if m and p.get("title"):
+                first_plain = re.sub(r"<[^>]+>", " ", m.group(1))
+                first_plain = re.sub(r"\s+", " ", first_plain).strip().lower()
+                title_plain = re.sub(r"\s+", " ", str(p["title"])).strip().lower()
+                if first_plain and title_plain and first_plain == title_plain:
+                    warnings.append(
+                        f"passages[{i}]: the first content paragraph repeats the passage title "
+                        f"{p['title']!r} — the title renders separately; drop the duplicated paragraph"
+                    )
         # references
         refs = p.get("references", [])
         if not isinstance(refs, list):
@@ -214,8 +255,13 @@ def validate(data: dict) -> dict:
             errors.append(f"sections[{i}].order is missing")
         else:
             s_orders.append(s["order"])
-        if "title" not in s or not isinstance(s.get("title"), str) or not s["title"]:
-            errors.append(f"sections[{i}].title must be a non-empty string")
+        if "title" not in s or not isinstance(s.get("title"), str):
+            errors.append(f"sections[{i}].title is missing (empty string is fine)")
+        elif re.match(r"^questions?\s+\d{1,2}\b", s.get("title", "").strip(), re.I):
+            warnings.append(
+                f"sections[{i}].title {s['title']!r} duplicates the auto-generated question-range header — "
+                f"leave the title empty"
+            )
         if "description" not in s:
             errors.append(f"sections[{i}].description is missing (can be null)")
 
@@ -310,6 +356,22 @@ def validate(data: dict) -> dict:
                 f"sections[{i}]: description says 'more than once' but wordBank.reuse is not true (got {wb_any.get('reuse')})"
             )
 
+        # --- Warning: statement type vs the description's meaning table ---
+        if ptype in ("true_false_not_given", "yes_no_not_given"):
+            plain_desc = re.sub(r"<[^>]+>", " ", str(desc or "")).lower()
+            has_yes = re.search(r"(^|\W)yes(\W|$)", plain_desc)
+            has_no = re.search(r"(^|\W)no(\W|$)", plain_desc)
+            if ptype == "true_false_not_given" and has_yes and has_no:
+                warnings.append(
+                    f"sections[{i}]: type is 'true_false_not_given' but the description labels the options "
+                    f"YES / NO / NOT GIVEN — this is a 'yes_no_not_given' task; flip the type and remap answers (TRUE→YES, FALSE→NO)"
+                )
+            if ptype == "yes_no_not_given" and not (has_yes and has_no):
+                warnings.append(
+                    f"sections[{i}]: type is 'yes_no_not_given' but the description has no YES/NO labels — "
+                    f"verify the meaning table (TRUE/FALSE tasks must be 'true_false_not_given')"
+                )
+
         # Blank types (completion/grid)
         if ptype in TYPES_WITH_BLANKS:
             content = config.get("content")
@@ -329,6 +391,29 @@ def validate(data: dict) -> dict:
                         item_qid = item.get("questionId", "")
                         if k < len(blanks) and blanks[k] != item_qid:
                             errors.append(f"sections[{i}]: blank[{k}] questionId {blanks[k]} != items[{k}].questionId {item_qid}")
+                for tail in find_number_markers_before_blanks(content):
+                    warnings.append(
+                        f"sections[{i}]: text node ends with a question-number marker {tail!r} right before a blank — "
+                        f"the blank renders the number itself; strip the '(N)' marker from the text"
+                    )
+                if isinstance(desc, str) and re.search(r"list of (words|phrases|options)", desc, re.I) and not config.get("wordBank"):
+                    warnings.append(
+                        f"sections[{i}]: instruction says a word list is given but wordBank is missing — "
+                        f"add the option-box wordBank (letters) or drop the word list from the instruction"
+                    )
+                for para in content.get("content", []) or []:
+                    if not isinstance(para, dict) or para.get("type") != "paragraph":
+                        continue
+                    first = next(
+                        (c for c in para.get("content", []) or []
+                         if isinstance(c, dict) and c.get("type") == "text"),
+                        None,
+                    )
+                    if first and re.match(r"^\s*(?:[•·]|o)(\s+|$)", str(first.get("text", ""))):
+                        warnings.append(
+                            f"sections[{i}]: paragraph starts with a literal bullet {first.get('text','')[:10]!r} — "
+                            f"use bulletList/listItem nodes instead of '• '/'o ' text (nest 'o' items inside the parent listItem)"
+                        )
 
         # items[] must contain ONLY questionId (importer rejects extra keys)
         if ptype in TYPES_WITH_BLANKS or ptype in TYPES_WITH_SHARED_OPTIONS:
@@ -363,6 +448,14 @@ def validate(data: dict) -> dict:
                     warnings.append(
                         f"sections[{i}]: multiple_choice items share identical options arrays — if these are answer slots picking from one shared pool, use 'select_from_list' instead"
                     )
+                # Duplicate stems → answer slots, not distinct questions
+                stems = [(item.get("questionText") or "").strip() for item in items]
+                dup_stems = {t for t in stems if t and stems.count(t) > 1}
+                if dup_stems:
+                    errors.append(
+                        f"sections[{i}]: multiple_choice items have duplicate questionText {sorted(dup_stems)[:1]!r} — repeated stems are answer "
+                        f"slots sharing one pool; use 'select_from_list' (stem in description, bare questionId items)"
+                    )
 
         # Shared options
         if ptype in TYPES_WITH_SHARED_OPTIONS:
@@ -372,10 +465,29 @@ def validate(data: dict) -> dict:
             for k, opt in enumerate(opts):
                 if not isinstance(opt, str) or not opt.strip():
                     errors.append(f"sections[{i}].presentationConfig.options[{k}] must be a non-empty string (not an object)")
+            # A shared pool attached to flowing text with blanks is a completion
+            # (option-box convention) — never select_from_list.
+            plain_desc = re.sub(r"<[^>]+>", " ", str(desc or ""))
+            has_blank_markers = bool(
+                re.search(r"[.…]{4,}|\.{4,}|_{3,}|\(?\b\d{1,2}[\).]\s*[.…]{2,}", plain_desc)
+            )
+            if has_blank_markers:
+                errors.append(
+                    f"sections[{i}]: type is 'select_from_list' but the description contains flowing text with "
+                    f"blank markers — this is a summary/note completion with a word box; use "
+                    f"summary_completion/note_completion (Tiptap doc + wordBank of LETTERS per the option-box "
+                    f"convention), not select_from_list"
+                )
             for item in items:
                 q = q_by_id.get(item.get("questionId", ""))
                 if q is not None:
-                    for ans in q.get("correctAnswer", []):
+                    ca = q.get("correctAnswer", [])
+                    if len(ca) > 1:
+                        errors.append(
+                            f"sections[{i}]: select_from_list slot has {len(ca)} correct answers {ca!r} — each slot takes "
+                            f"exactly ONE option (distribute combined keys like '21 & 22 → B, D' one letter per slot)"
+                        )
+                    for ans in ca:
                         if LETTER_RE.fullmatch(str(ans)) and letter_index(ans) >= len(opts):
                             errors.append(
                                 f"sections[{i}]: correctAnswer '{ans}' is outside the shared options pool ({len(opts)} options)"
@@ -426,6 +538,16 @@ def validate(data: dict) -> dict:
                                         f"sections[{i}]: correctAnswer {ans!r} not found in wordBank.words — answers must exactly match a wordBank entry"
                                     )
 
+        # matching_sentence_end: items carry the sentence beginnings / item labels
+        if ptype == "matching_sentence_end":
+            for j, item in enumerate(items):
+                qt = str(item.get("questionText", "") or "").strip()
+                if not qt:
+                    errors.append(
+                        f"sections[{i}].items[{j}].questionText is required for matching_sentence_end "
+                        f"(the sentence beginning / item text — never a bare questionId)"
+                    )
+
         # matching_heading: heading-drop blocks in passage content
         if ptype == "matching_heading":
             for j, item in enumerate(items):
@@ -465,6 +587,43 @@ def validate(data: dict) -> dict:
                 for j, item in enumerate(items):
                     if "position" not in item:
                         errors.append(f"sections[{i}].items[{j}].position required when markerLayout={ml}")
+
+        # Writing: large_answers carry NO correct answer — the model answer
+        # lives in the explanation's grading guide (PROMPT: / MODEL ANSWER:)
+        if ptype == "large_answers":
+            for q in questions:
+                expl = str(q.get("explanation", "") or "").strip()
+                ca = [str(a) for a in q.get("correctAnswer", [])]
+                joined = " ".join(ca).strip()
+                if joined:
+                    errors.append(
+                        "questions: large_answers correctAnswer must be [\"\"] (empty) — "
+                        "writing questions have no correct answer; the model answer belongs "
+                        "in the explanation's MODEL ANSWER section"
+                    )
+                if not expl:
+                    errors.append(
+                        f"questions: large_answers question is missing 'explanation' — the AI writing "
+                        f"grader uses it as the grading guide; add PROMPT + band-7 model answer"
+                    )
+                elif "sample response placeholder" in expl.lower():
+                    errors.append("questions: large_answers explanation is still the placeholder — write the band-7 model answer")
+                else:
+                    if not re.search(r"prompt\s*:", expl, re.I):
+                        errors.append("questions: large_answers explanation lacks 'PROMPT:' — the grader needs the full task prompt")
+                    if not re.search(r"model answer\s*:?", expl, re.I):
+                        errors.append("questions: large_answers explanation lacks 'MODEL ANSWER:' — the grader needs a band-7 model answer")
+            body_html = " ".join(str(p.get("content", "")) for p in passages)
+            prompt_text = " ".join(str(p.get("title", "")) for p in passages)
+            if "<img" not in body_html and re.search(
+                r"graph|chart|table|diagram|process|map|compare|summarise|summarize",
+                prompt_text + " " + body_html,
+                re.I,
+            ):
+                warnings.append(
+                    "passages: this looks like a Task 1 visual prompt but the content has no <img> — "
+                    "students cannot answer without seeing the graph/chart"
+                )
 
         # Speaking cue_card
         if ptype == "speaking_cue_card":
@@ -577,8 +736,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.transcript:
-        print(validate_transcript(args.file))
+        out = validate_transcript(args.file)
+        print(out)
+        sys.exit(0 if out.startswith("VALID") else 1)
     elif args.file.endswith(".json"):
-        print(validate_file(args.file))
+        out = validate_file(args.file)
+        print(out)
+        sys.exit(0 if out.startswith("VALID") else 1)
     else:
-        print(validate_transcript(args.file))
+        out = validate_transcript(args.file)
+        print(out)
+        sys.exit(0 if out.startswith("VALID") else 1)

@@ -21,7 +21,8 @@ Misclassification is the most common conversion failure. Classify by the **PDF's
 | PDF cue | Presentation type | Notes |
 |---|---|---|
 | Question with its own 2+ options (radio/lettered list) | `single_choice` / `multiple_choice` | MCQ only when each question owns its options |
-| Shared option box / dropdowns; several questions pick from ONE pool (often A–E in a box) | `select_from_list` | Options live at `presentationConfig.options`; each item is just `{questionId}`. NOT `multiple_choice`. |
+| Shared option box / dropdowns; several questions pick from ONE pool AND the slots are standalone statements/questions with no surrounding text | `select_from_list` | Options live at `presentationConfig.options`; each item is just `{questionId}`. NOT `multiple_choice`. |
+| Shared word box + blanks in flowing text ("Complete the summary using the list of words, A–I, below.") | `summary_completion` / `note_completion` | Option-box convention (see 02 Family 3): Tiptap doc with blanks, `wordBank.words` = LETTERS, `correctAnswer` = letters, letter→word mapping table in description. NEVER `select_from_list`. |
 | "Classify the following statements as referring to: A/B/C/D…" (esp. "You may use any letter more than once") | `matching_features` | Letter wordBank + `reuse: true`; feature list in description |
 | "Which paragraph contains the following information?" | `matching_information` | Letter answers |
 | List of headings (i–x) matched to paragraphs | `matching_heading` | Letter `questionText`, drop-zone divs, plain heading texts |
